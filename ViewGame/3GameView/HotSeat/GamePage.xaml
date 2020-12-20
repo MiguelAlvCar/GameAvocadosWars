@@ -1,0 +1,457 @@
+﻿<Page x:Class="ViewGame.View.Game.GamePage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:validation="clr-namespace:Styles.Validation;assembly=Styles"
+        xmlns:local1="clr-namespace:ViewGame.View.Game"        
+        xmlns:local2="clr-namespace:ViewGame.View.Resources"
+        mc:Ignorable="d"
+        Title="HotSeatWindow" Name="MW" MinWidth="900" MinHeight="600">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <local1:ConverterBreite x:Key="ConverterBreite"/>
+            <local1:ConverterLaenge x:Key="ConverterLaenge"/>
+            <local1:ConverterMovementText x:Key="ConverterMovementText"/>
+            <local1:ConverterStregthText x:Key="ConverterStregthText"/>
+            <local1:ConverterRangeText x:Key="ConverterRangeText"/>
+            <local1:ConverterRangedStregthText x:Key="ConverterRangedStregthText"/>
+            <local1:ConverterLifeText x:Key="ConverterLifeText"/>
+            <!--Game="{Binding RelativeSource={RelativeSource Mode=Self}}"-->
+            <local1:ConverterMoralText x:Key="ConverterMoralText"/>
+            <local1:ConverterTurn x:Key="ConverterTurn"/>
+            <local1:OnlineVisibleConverter x:Key="OnlineVisibleConverter"/>
+            <local1:HotSeatVisibleConverter x:Key="HotSeatVisibleConverter"/>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles;Component/SpecificControls/Controls.xaml"/>
+                <ResourceDictionary Source="/Styles;Component/ElementalControls/ElementalControls.xaml"/>
+                <ResourceDictionary Source="/Styles;Component/ElementalControls/Slider.xaml"/>
+                <ResourceDictionary Source="/Styles;Component/SpecificControls/MenuItemContextMenu/MenuItemContextMenu.xaml"/>
+                <ResourceDictionary Source="/Styles;Component/Validation/Validation.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <Grid>
+            <DockPanel>
+                <Grid DockPanel.Dock="Top" Height="115" Name="MadeByMiguelAndBackGround">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="pack://application:,,,/Styles;component/Images/madera2.jpg" Stretch="Fill" TileMode="FlipX"  ViewportUnits="Absolute" Viewport="0,0,800,230"/>
+                    </Grid.Background>
+                    <TextBlock Name="Gemacht_von" Foreground="White" Text="Gemacht von Miguel Alvarez Caro" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20" Width="280" Margin="0,0,250,0" />
+                </Grid>                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1112*"/>
+                        <ColumnDefinition Width="189*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.Background>
+                        <ImageBrush Stretch="Fill" TileMode="FlipXY"/>
+                    </Grid.Background>
+                </Grid>
+                
+            </DockPanel>
+
+            <DockPanel>                
+                <Grid DockPanel.Dock="Top" Name="TopRaster">
+                    <TabControl DockPanel.Dock="Top" FontSize="24" FontFamily="Old English Text MT" BorderBrush="#FFF7BF00" Name="TabControlCreateMap">
+                        <TabControl.Resources>
+                            <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                <Setter Property="Margin" Value="5"/>
+                                <Setter Property="FontSize" Value="24"/>
+                            </Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                <Setter Property="Margin" Value="5"/>
+                            </Style>
+                            
+                        </TabControl.Resources>
+
+                        <TabControl.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/Styles;component/Images/madera2.jpg" Stretch="Fill" TileMode="FlipX"  ViewportUnits="Absolute" Viewport="72,0,800,230"/>
+                        </TabControl.Background>
+
+                        <TabItem BorderBrush="Transparent" Height="110" Width="210" Background="Transparent" IsEnabled="False"/>
+
+                        <TabItem Style="{StaticResource TabItemCurtain}" Header="Karte" Name="Karte">                            
+                            <ToolBar Foreground="White" Background="{x:Null}" Height="179">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Grid MinWidth="240">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel VerticalAlignment="Center">
+                                            <TextBlock Name="Breite" FontSize="26" 
+                                                       Text="{Binding Value, ElementName=sliderwidth, Converter = {StaticResource ConverterBreite}}"/>
+                                            <Slider Name="sliderwidth" Minimum="9" Maximum="50" TickFrequency="1" IsSnapToTickEnabled="True"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                            <TextBlock Name="Länge" FontSize="26" 
+                                                       Text="{Binding Value, ElementName=sliderlength, Converter = {StaticResource ConverterLaenge}}"/>
+                                            <Slider Name="sliderlength" Minimum="9" Maximum="22" TickFrequency="1" IsSnapToTickEnabled="True"/>
+                                        </StackPanel>
+                                    </Grid>
+                                    <validation:ValidatedButton Click="DrawMapGrid" x:Name="Raster_Zeichnen"  FontSize="28"
+                                                            Margin="9" Grid.Row="1" Content="Raster Zeichnen" IsToolTipSet="True"/>
+                                </Grid>
+                                <Separator Background="#FFF7BF00"/>
+                                <ScrollViewer HorizontalScrollBarVisibility="Disabled"  VerticalScrollBarVisibility="Auto">
+                                    <Grid Name="ToggleButtongrid">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        
+                                        <ToggleButton Click="Terrain" IsChecked="{Binding TogButtonForestChecked}" x:Name="Wald" Content="Wald" Height="auto" BorderThickness="1" BorderBrush="#FFF7BF00" Margin="4">
+                                            <ToggleButton.Background>
+                                                <ImageBrush Stretch="None" ImageSource="pack://siteoforigin:,,,/3GameView/Resources/Main/Images/Terrain/Wald.jpg"/>
+                                            </ToggleButton.Background>
+                                        </ToggleButton>
+                                        <ToggleButton Click="Terrain" IsChecked="{Binding TogButtonHillChecked}" Grid.Column="1" x:Name="Huegel" Content="Hügel" Height="auto" BorderThickness="1" BorderBrush="#FFF7BF00" Margin="4">
+                                            <ToggleButton.Background>
+                                                <ImageBrush Stretch="None" ImageSource="pack://siteoforigin:,,,/3GameView/Resources/Main/Images/Terrain/Huegel.jpg"/>
+                                            </ToggleButton.Background>
+                                        </ToggleButton>
+                                        
+                                        <ToggleButton Click="Terrain" IsChecked="{Binding TogButtonCityChecked}" Grid.Row="1" Grid.Column="0" x:Name="City" Content="City" Height="auto" BorderThickness="1" BorderBrush="#FFF7BF00" Margin="4">
+                                            <ToggleButton.Background>
+                                                <ImageBrush Stretch="Fill" Viewport="-0.3,-0.3,2,2" ImageSource="pack://siteoforigin:,,,/3GameView/Resources/Main/Images/Terrain/CityGrassGray.jpg"/>
+                                            </ToggleButton.Background>
+                                        </ToggleButton>
+                                        <ToggleButton Click="Terrain" IsChecked="{Binding TogButtonSeeChecked}" x:Name="See" Grid.Row="1" Grid.Column="1" Content="See" Height="auto" BorderThickness="1" BorderBrush="#FFF7BF00" Margin="4">
+                                            <ToggleButton.Background>
+                                                <ImageBrush Stretch="None" ImageSource="pack://siteoforigin:,,,/3GameView/Resources/Main/Images/Terrain/See.jpg"/>
+                                            </ToggleButton.Background>
+                                        </ToggleButton>
+
+                                        <ToggleButton Click="Terrain" IsChecked="{Binding TogButtonRiverChecked}" Grid.Row="2" Grid.Column="0" x:Name="River" Content="River" Height="auto" BorderThickness="1" BorderBrush="#FFF7BF00" Margin="4">
+                                            <ToggleButton.Background>
+                                                <ImageBrush Stretch="Fill" ImageSource="pack://siteoforigin:,,,/3GameView/Resources/Main/Images/Terrain/RiverButton.jpg"/>
+                                            </ToggleButton.Background>
+                                        </ToggleButton>
+                                        <ToggleButton Click="Terrain" IsChecked="{Binding TogButtonBridgeChecked}" x:Name="Bridge" Grid.Row="2" Grid.Column="1" Content="Bridge" Height="auto" BorderThickness="1" BorderBrush="#FFF7BF00" Margin="4">
+                                            <ToggleButton.Background>
+                                                <ImageBrush Stretch="Fill" ImageSource="pack://siteoforigin:,,,/3GameView/Resources/Main/Images/Terrain/BridgeButton.jpg"/>
+                                            </ToggleButton.Background>
+                                        </ToggleButton>
+
+                                        <ToggleButton Style="{StaticResource ToggleButtonRot}" IsChecked="{Binding TogButtonRedChecked}" Click="Terrain" Grid.Row="3" x:Name="RotToggleB" Content="Rot" Height="auto" BorderThickness="1" BorderBrush="#FFF7BF00" Margin="4" Background="Red"/>
+                                        <ToggleButton Style="{StaticResource ToggleButtonBlau}"  IsChecked="{Binding TogButtonBlueChecked}" Click="Terrain" Grid.Column="1" Grid.Row="3" OpacityMask="#ff0000ff" x:Name="BlauToggleB" Content="Blau" Height="auto" BorderThickness="1" BorderBrush="#FFF7BF00" Margin="4"/>
+
+
+                                    </Grid>
+                                </ScrollViewer>
+
+                                <Separator Background="#FFF7BF00"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="9*"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="88*"/>
+                                        <ColumnDefinition Width="88*"/>
+                                        <ColumnDefinition Width="110*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Name="Punktzahl" HorizontalAlignment="Center" Padding="90,0,0,0" VerticalAlignment="Center" Text="Punktzahl" FontSize="30" Grid.ColumnSpan="2" />
+                                    <TextBlock Name="Spieler" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Spieler" FontSize="30" />
+                                    <TextBlock Name="Fraktion" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Fraktion" FontSize="30" />
+
+                                    <TextBlock Name="Heer_1" Grid.Row="1" Text="Heer 1" Margin="5"/>
+                                    <TextBlock Name="Heer_2" Grid.Row="2" Text="Heer 2" Margin="5"/>                                    
+                                    <validation:ValidatedTextBox x:Name="txtbox1" Grid.Row="1" Grid.Column="1" Margin="5" Width="80" FontSize="23"
+                                             LostFocus="UpdateSourceTextBox"
+                                             Validation.ErrorTemplate="{StaticResource ValidationNone}" IsToolTipSet="True">
+                                        <Binding Path="Player1Points" Mode="TwoWay" UpdateSourceTrigger="Explicit" FallbackValue="0" TargetNullValue="0">
+                                            <Binding.ValidationRules>
+                                                <local1:PointsValidationRule/>
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </validation:ValidatedTextBox>
+                                    <validation:ValidatedTextBox x:Name="txtbox2" Grid.Row="2" Grid.Column="1" Margin="5" Width="80" FontSize="23"
+                                             LostFocus="UpdateSourceTextBox"
+                                             Validation.ErrorTemplate="{StaticResource ValidationNone}" IsToolTipSet="True" >
+                                        <Binding Path="Player2Points" Mode="TwoWay" UpdateSourceTrigger="Explicit" FallbackValue="0" TargetNullValue="0">
+                                            <Binding.ValidationRules>
+                                                <local1:PointsValidationRule/>
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </validation:ValidatedTextBox>
+
+                                    <TextBox IsReadOnly="True" Margin="5" FontSize="23" Grid.Column="2" Grid.Row="1"
+                                             Name="TextboxPlayer1" MinWidth="150"
+                                             Visibility="{Binding Converter={StaticResource OnlineVisibleConverter}}"/>
+                                    <validation:ValidatedComboBox Visibility="{Binding Converter={StaticResource HotSeatVisibleConverter}}"
+                                        Validation.ErrorTemplate="{StaticResource ValidationNone}" IsToolTipSet="True"
+                                        ItemsSource="{Binding listPlayersOb, Mode=OneWay}" ItemContainerStyle="{StaticResource ComboboxItem}" Margin="5" 
+                                        Grid.Column="2" Grid.Row="1" MinWidth="150" FontSize="23" x:Name="ComboboxPlayer1"
+                                        LostFocus="UpdateSourceComboBox">
+                                        <validation:ValidatedComboBox.SelectedItem>
+                                            <Binding Path="Player1" Mode="TwoWay" UpdateSourceTrigger="Explicit">
+                                                <Binding.ValidationRules>
+                                                    <local1:NoPlayerSelectedValidationRule/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </validation:ValidatedComboBox.SelectedItem>
+                                    </validation:ValidatedComboBox>
+                                    <TextBox IsReadOnly="True" Margin="5" FontSize="23" Grid.Column="2" Grid.Row="2"
+                                             Name="TextboxPlayer2"
+                                             Visibility="{Binding Converter={StaticResource OnlineVisibleConverter}}"/>
+                                    <validation:ValidatedComboBox Visibility="{Binding Converter={StaticResource HotSeatVisibleConverter}}"
+                                        Validation.ErrorTemplate="{StaticResource ValidationNone}" IsToolTipSet="True"
+                                        ItemsSource="{Binding listPlayersOb, Mode=OneWay}" ItemContainerStyle="{StaticResource ComboboxItem}" 
+                                        Margin="5" Grid.Column="2" Grid.Row="2" FontSize="23" x:Name="ComboboxPlayer2"
+                                        LostFocus="UpdateSourceComboBox">
+                                        <validation:ValidatedComboBox.SelectedItem>
+                                            <Binding Path="Player2" Mode="TwoWay" UpdateSourceTrigger="Explicit">
+                                                <Binding.ValidationRules>
+                                                    <local1:NoPlayerSelectedValidationRule/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </validation:ValidatedComboBox.SelectedItem>
+                                    </validation:ValidatedComboBox>
+                                    <validation:ValidatedComboBox 
+                                        Validation.ErrorTemplate="{StaticResource ValidationNone}" IsToolTipSet="True"
+                                        ItemsSource="{Binding listArmiesOb, Mode=OneWay}" DisplayMemberPath="Name" Height="34" 
+                                        Margin="5" Grid.Column="3" Grid.Row="1" MinWidth="250" FontSize="23" x:Name="Army1Select"
+                                        LostFocus="UpdateSourceComboBox">
+                                        <validation:ValidatedComboBox.SelectedItem>
+                                            <Binding Path="Army1" Mode="TwoWay" UpdateSourceTrigger="Explicit">
+                                                <Binding.ValidationRules>
+                                                    <local1:NoArmySelectedValidationRule/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </validation:ValidatedComboBox.SelectedItem>
+                                    </validation:ValidatedComboBox>
+                                    <validation:ValidatedComboBox 
+                                        Validation.ErrorTemplate="{StaticResource ValidationNone}" IsToolTipSet="True"
+                                        ItemsSource="{Binding listArmiesOb, Mode=OneWay}" DisplayMemberPath="Name" Height="34" 
+                                        Margin="5" Grid.Column="3" Grid.Row="2" FontSize="23" x:Name="Army2Select"
+                                        LostFocus="UpdateSourceComboBox">
+                                        <validation:ValidatedComboBox.SelectedItem>
+                                            <Binding Path="Army2" Mode="TwoWay" UpdateSourceTrigger="Explicit">
+                                                <Binding.ValidationRules>
+                                                    <local1:NoArmySelectedValidationRule/>
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </validation:ValidatedComboBox.SelectedItem>
+                                    </validation:ValidatedComboBox>
+
+                                    <CheckBox Grid.ColumnSpan="2" Grid.Row="3" Checked="Checked"  Unchecked="Unchecked"  Name="chkbox" FontSize="20" HorizontalAlignment="Center" Content="Gleiche Punktzahl" Foreground="White" Margin="16,5,5,0"/>
+                                    <TextBlock Grid.Row="3" Grid.Column="2" FontSize="20" Margin="5" Visibility="{Binding Converter={StaticResource HotSeatVisibleConverter}}">
+                                        <Hyperlink Click="Neuer_SpielerMeth">
+                                            <TextBlock Name="Neuer_Spieler" Margin="0,0,5,5" FontSize="20" Text="Neuer Spieler" Foreground="#FFCBCBCB"/>
+                                        </Hyperlink>
+                                    </TextBlock>
+                                    <Button Padding="8" Grid.Column="4" Grid.RowSpan="4" Click="ToArmyCreation" VerticalAlignment="Center"
+                                            Name="ToCreateArmiesButton">
+                                        <TextBlock Name="ToCreateArmies" FontSize="28" Text="Aufbau der Heere" TextWrapping="WrapWithOverflow" TextAlignment="Center" />
+                                    </Button>
+                                </Grid>
+
+                            </ToolBar>
+                        </TabItem>
+                        <TabItem Style="{StaticResource TabItemCurtain}" Header="Heer 1" Name="Heer1" IsEnabled="False" HorizontalAlignment="Right">
+                            <ToolBar Height="163" Foreground="White" Background="{x:Null}">
+                                <local2:UnitSelecterPanel x:Name="Army1Selecter" ArmyColor="Red"
+                                                          ArmyType="{Binding Path=Army1, UpdateSourceTrigger=Explicit, Mode=OneWay}" 
+                                                          InitialPoints="{Binding Path=Player1Points, UpdateSourceTrigger=Explicit, Mode=OneWay, TargetNullValue=0}"/>
+
+                                <Grid>
+                                    <Button Name="ToArmy2Button" Margin="5" Command="{Binding ToPlayer2}" VerticalAlignment="Center" Padding="8">
+                                        <TextBlock Name="Zum_Heer_2" FontSize="28" Text="Z H 2" TextWrapping="Wrap" TextAlignment="Center"/>
+                                    </Button>
+                                </Grid>
+
+                            </ToolBar>
+                        </TabItem>
+                        <TabItem Style="{StaticResource TabItemCurtain}" Header="Heer 2" Name="Heer2" IsEnabled="False">
+                            <ToolBar Height="163" Foreground="White" Background="{x:Null}">
+                                <local2:UnitSelecterPanel x:Name="Army2Selecter" ArmyColor="Blue"
+                                                          ArmyType="{Binding Path=Army2, UpdateSourceTrigger=Explicit, Mode=OneWay}" 
+                                                          InitialPoints="{Binding Path=Player2Points, UpdateSourceTrigger=Explicit, Mode=OneWay, TargetNullValue=0}"/>
+                                
+                                <Grid>
+                                    <Button Name="ToBattleButton" Margin="5" Command="{Binding ToBattle}" VerticalAlignment="Center" Padding="8">
+                                        <TextBlock Name ="ToBattle" FontSize="28" Text="Zum Schlacht" TextWrapping="Wrap" TextAlignment="Center" />
+                                    </Button>
+                                </Grid>
+                            </ToolBar>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+
+                <Grid VerticalAlignment="Center">                    
+                    <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled">
+                        <Canvas Name="Raster" Margin="50" Width="Auto" Height="Auto" MouseWheel="Raster_MouseWheel">
+                            <Canvas.LayoutTransform>
+                                <ScaleTransform x:Name="pt"/>
+                            </Canvas.LayoutTransform>
+                        </Canvas>
+                    </ScrollViewer>
+                </Grid>
+            </DockPanel>
+
+            <Canvas Name="TurnCounter" Visibility="Collapsed"  HorizontalAlignment="Right" VerticalAlignment="Top">
+                <Grid Canvas.Right="-18" Canvas.Top="-18">
+                    <Border BorderThickness="3" BorderBrush="#FF816711" CornerRadius="18">
+                        <Border.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/Styles;component/Images/madera2.jpg" Stretch="Fill" TileMode="FlipXY" ViewportUnits="Absolute" Viewport="72,0,800,230"/>
+                        </Border.Background>
+                    </Border>
+                    <Border BorderThickness="1" BorderBrush="#FFA17E0A" CornerRadius="18" Margin="1"/>
+                    <TextBlock Margin="20,45,20,20" VerticalAlignment="Center" Text="{Binding turn, Converter = {StaticResource ConverterTurn}}" HorizontalAlignment="Right" FontSize="30" Foreground="White" Name="TurnCounterText" Width="200"/>
+                </Grid>
+            </Canvas>
+
+            <Button Click="StartClick" VerticalAlignment="Top" HorizontalAlignment="Left" Width="170" Padding="10" Name ="Start" 
+                    Content="Start" FontSize="45" FontWeight="Bold" Margin="20"/>
+
+            <DockPanel Name="PanelStartAndUnitInfo" VerticalAlignment="Bottom" Width="Auto">
+                <Grid DockPanel.Dock="Left" Margin="9" Name="PanelButtonUnitInfo" Visibility="Collapsed" VerticalAlignment="Bottom" MinWidth="300">
+                    <Border BorderThickness="3" BorderBrush="#FF816711" CornerRadius="18">
+                        <Border.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/Styles;component/Images/madera2.jpg" Stretch="Fill" 
+                                        TileMode="FlipXY" ViewportUnits="Absolute" Viewport="72,0,800,230"/>
+                        </Border.Background>
+                    </Border>
+                    <Border BorderThickness="1" BorderBrush="#FFA17E0A" CornerRadius="18" Margin="1"/>
+                    <StackPanel>
+                        <StackPanel.Resources>
+                            <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                <Setter Property="Margin" Value="10,3,10,3"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Style>
+                        </StackPanel.Resources>
+                        <StackPanel Name="PanelUnitInfo" Visibility="Collapsed">
+                            <TextBlock Name="UnitNameText"  Margin="3" FontSize="24" TextDecorations="Underline" HorizontalAlignment="Center" Text="{Binding selectedUnit.UnitType.Name}"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Height="Auto" MinHeight="0" Grid.Column="0">
+                                    <StackPanel.Resources>
+                                        <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                            <Setter Property="FontSize" Value="20"/>
+                                            <Setter Property="MinHeight" Value="0"/>
+                                            <Setter Property="Height" Value="Auto"/>
+                                        </Style>
+                                    </StackPanel.Resources>
+                                    <TextBlock Name="LifeText" Text="{Binding selectedUnit.LifeUnitViewModel, Converter={StaticResource ConverterLifeText}}"/>
+                                    <TextBlock Name="MoralText" Text="{Binding selectedUnit.MoralUnitViewModel, Converter={StaticResource ConverterMoralText}}"/>
+                                    <TextBlock Name="MovementText">
+                                        <TextBlock.Text>
+                                            <MultiBinding Converter="{StaticResource ConverterMovementText}">
+                                                <Binding Path="selectedUnit.RestMovementUnitViewModel"/>
+                                                <Binding Path="selectedUnit.BaseMovementUnitViewModel"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                    <TextBlock Name="StregthText" Text="{Binding selectedUnit.Stregth, Converter={StaticResource ConverterStregthText}}"/>
+                                    <StackPanel Height="Auto" Name="PanelRangeUnit">
+                                        <TextBlock Name="RangeText" Text="{Binding selectedUnit.Range, Converter={StaticResource ConverterRangeText}}"/>
+                                        <TextBlock Name="RangedStregthText" Text="{Binding selectedUnit.RangedStregth, Converter={StaticResource ConverterRangedStregthText}}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <ToggleButton Command="{Binding ShowFire}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" 
+                                              Height="60" Visibility="Hidden" BorderBrush="Black" x:Name="Fire" Grid.Column="1" Content="Feuern" 
+                                              Padding="10" Margin="4" VerticalAlignment="Center" IsChecked="False">
+                                    <ToggleButton.LayoutTransform>
+                                        <RotateTransform Angle="-90" />
+                                    </ToggleButton.LayoutTransform>
+                                </ToggleButton>
+                            </Grid>
+                            <TextBlock Visibility="Collapsed" Name="SpecialStrengthText"  FontSize="17" Text="{Binding selectedUnit.UnitType.SpecialStrength}"/>
+                        </StackPanel>
+                        <ToggleButton IsEnabled="False" Name="UnitInfoButton" Margin="13" BorderBrush="Black" Content="Einheitsinfo" 
+                                      IsChecked="False" Checked="CheckedEinheitsinfo" Unchecked="UncheckedEinheitsinfo" 
+                                      HorizontalAlignment="Center"
+                                      Style="{StaticResource ToggleButtonEinheit}"/>
+                    </StackPanel>
+                </Grid>
+                <Button Style="{StaticResource ButtonNextTurn}" Command="{Binding NextTurn}" x:Name="NextTurn" 
+                        DockPanel.Dock="Right" Visibility="Collapsed" VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                        IsEnabled="{Binding IsLocalPlayerInHisOwnTurn, Mode=OneWay, UpdateSourceTrigger=Explicit}" Margin="0,0,20,0" Background="Red"/>
+                <Grid DockPanel.Dock="Bottom" HorizontalAlignment="Stretch"  VerticalAlignment="Bottom" Margin="10,0,10,10"
+                      Visibility="{Binding Converter={StaticResource OnlineVisibleConverter}}" MaxWidth="700">
+                    <Grid HorizontalAlignment="Left">
+                        <Border BorderThickness="3" BorderBrush="#FF816711" CornerRadius="18">
+                            <Border.Background>
+                                <ImageBrush ImageSource="pack://application:,,,/Styles;component/Images/madera2.jpg" Stretch="Fill" TileMode="FlipXY" ViewportUnits="Absolute" Viewport="72,0,800,230"/>
+                            </Border.Background>
+                        </Border>
+                        <Border BorderThickness="1" BorderBrush="#FFA17E0A" CornerRadius="18" Margin="1"/>
+                        <DockPanel Margin="30,15,30,15" >
+                            <DockPanel DockPanel.Dock="Bottom" Name="HideablePanelFlowDocument" Margin="0,10,0,0" Height="150"
+                                   HorizontalAlignment="Stretch">
+                                <DockPanel DockPanel.Dock="Bottom">
+                                    <DockPanel.InputBindings>
+                                        <KeyBinding Key="Enter" Command="{Binding SubmitMessage}" CommandParameter="{Binding ElementName=NewMessageBox, Path=Text}" />
+                                    </DockPanel.InputBindings>
+                                    <Button Name="EnterMessage" DockPanel.Dock="Right" Command="{Binding SubmitMessage}" 
+                                        CommandParameter="{Binding ElementName=NewMessageBox, Path=Text}" Content="Ok" Margin="0,0,10,0" Padding="20,4,20,4"/>
+                                    <TextBox DockPanel.Dock="Top" Name="NewMessageBox" IsEnabled="{Binding IsInAGameWithAdversary, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                         MaxLines="1" FontSize="18" FontFamily="Old English Text MT" Margin="0,0,30,0"/>
+                                </DockPanel>
+                                <FlowDocumentScrollViewer Name="FlowDocu" HorizontalScrollBarVisibility="Auto" Margin="0,0,0,10" DockPanel.Dock="Bottom" >
+                                    <FlowDocument Background="White" FontSize="18" FontFamily="Old English Text MT" PagePadding="0">
+                                        <List MarkerStyle="None" Padding="7" Name="ChatList"/>
+                                    </FlowDocument>
+                                </FlowDocumentScrollViewer>
+                            </DockPanel>
+                            <Button DockPanel.Dock="Top" HorizontalAlignment="Left" Name="HideFlowDocumentButton"
+                                Click="HideFlowDocumentButton_Click" Padding="12,6,12,6" FontSize="18"/>
+                        </DockPanel>
+                    </Grid>
+                </Grid>
+                
+
+            </DockPanel>
+        </Grid>
+
+        <DockPanel LastChildFill="False">
+            <DockPanel DockPanel.Dock="Top" Height="4" >
+                <Grid MouseEnter="KarteRechtsOben" MouseLeave="KarteAus" DockPanel.Dock="Right" Width="100" Background="Transparent"/>
+                <Grid MouseEnter="KarteLinksOben" MouseLeave="KarteAus" DockPanel.Dock="Left" Width="100" Background="Transparent"/>
+                <Grid MouseEnter="KarteOben" MouseLeave="KarteAus" Background="Transparent"/>
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Bottom" Height="4">
+                <Grid MouseEnter="KarteRechtsUnten" MouseLeave="KarteAus" DockPanel.Dock="Right" Width="100" Background="Transparent"/>
+                <Grid MouseEnter="KarteLinksUnten" MouseLeave="KarteAus" DockPanel.Dock="Left" Width="100" Background="Transparent"/>
+                <Grid MouseEnter="KarteUnten" MouseLeave="KarteAus" Background="Transparent"/>
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Right" Width="4">
+                <Grid MouseEnter="KarteRechtsOben" MouseLeave="KarteAus" DockPanel.Dock="Top" Height="80" Background="Transparent"/>
+                <Grid MouseEnter="KarteRechtsUnten" MouseLeave="KarteAus" DockPanel.Dock="Bottom" Height="80" Background="Transparent"/>
+                <Grid MouseEnter="KarteRechts" MouseLeave="KarteAus" Background="Transparent"/>
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Left" Width="4">
+                <Grid MouseEnter="KarteLinksOben" MouseLeave="KarteAus" DockPanel.Dock="Top" Height="80" Background="Transparent"/>
+                <Grid MouseEnter="KarteLinksUnten" MouseLeave="KarteAus" DockPanel.Dock="Bottom" Height="80" Background="Transparent"/>
+                <Grid MouseEnter="KarteLinks" MouseLeave="KarteAus" Background="Transparent"/>
+            </DockPanel>
+        </DockPanel>
+
+        <Frame Name="HotSeatFrame" NavigationUIVisibility="Hidden"/>
+    </Grid>
+</Page>

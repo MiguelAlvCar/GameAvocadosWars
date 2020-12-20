@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5255719A-30CD-4896-9B11-C3F25AF3248C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OnlineGameViewModel</RootNamespace>
+    <AssemblyName>OnlineGameViewModel</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstract\P2PInterceptor.cs" />
+    <Compile Include="LocalP2P\ListenerAndTransmiter\OpenListener.cs" />
+    <Compile Include="OGame_InternetInterpreter.cs" />
+    <Compile Include="Abstract\IConnectionCloseable.cs" />
+    <Compile Include="LocalP2P\P2PAbstract\AbstractEncoderDecoder.cs" />
+    <Compile Include="LocalP2P\P2PAbstract\OnlineGameListenerAndTransmiter.cs" />
+    <Compile Include="LocalP2P\ListenerAndTransmiter\ClientConnectionBase.cs" />
+    <Compile Include="LocalP2P\ListenerAndTransmiter\Listener.cs" />
+    <Compile Include="LocalP2P\ListenerAndTransmiter\Transmiter.cs" />
+    <Compile Include="LocalP2P\EncodeAndDecoder\Decoder.cs" />
+    <Compile Include="LocalP2P\EncodeAndDecoder\Encoder.cs" />
+    <Compile Include="OnlineGameViewModel.cs" />
+    <Compile Include="OnlineManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Terrain\OnlineViewModelTerrain.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ArmyAndUnitTypes\ArmyAndUnitTypes.csproj">
+      <Project>{c36c1767-107d-4fc3-a8d3-9827b02ec068}</Project>
+      <Name>ArmyAndUnitTypes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BaseUnit\BasicElements.csproj">
+      <Project>{3ca50315-9bcc-49bb-8fee-19c0c356a337}</Project>
+      <Name>BasicElements</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTO_Models\DTO_Models.csproj">
+      <Project>{07d3288c-b789-4eed-bf17-31ced0d318a7}</Project>
+      <Name>DTO_Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HotSeatViewModel\HotSeatViewModel.csproj">
+      <Project>{9eb5311c-97da-4a8f-8ba2-ee1033d2744f}</Project>
+      <Name>HotSeatViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model Spiel\ModelGame.csproj">
+      <Project>{46244ba6-2431-4cd9-9f94-53456e642bf5}</Project>
+      <Name>ModelGame</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnlineGameChatAndStore\OnlineGameChatAndStore.csproj">
+      <Project>{053206f7-fdba-4305-80d8-59c2a61430d5}</Project>
+      <Name>OnlineGameChatAndStore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Styles\Styles.csproj">
+      <Project>{c96b70fe-7d30-4068-9356-9e26542bf3a6}</Project>
+      <Name>Styles</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,30 @@
+﻿<Page x:Class="ViewGame.View.OtherWindowsMain.VictoryPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ViewGame"
+        mc:Ignorable="d"
+        Title="SiegFenster" >
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles;Component/ElementalControls/ElementalControls.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Page.Background>
+        <ImageBrush ImageSource="pack://application:,,,/Styles;component/Images/madera2.jpg" Stretch="Fill" TileMode="FlipX"  ViewportUnits="Absolute" Viewport="0,0,800,230"/>
+    </Page.Background>
+    <DockPanel LastChildFill="false">
+        <Button Name="Noch_ein_Kampf" DockPanel.Dock="Bottom" Margin="30,30,30,30" Grid.Row="3" Grid.Column="1" Content="Noch ein Kampf!!" Click="close" Padding="7" Width="328" FontSize="40"/>
+        <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center" Name="Textbox1" TextWrapping="WrapWithOverflow" Margin="30,30,30,30" Foreground="White" FontSize="40" FontFamily="Old English Text MT" Grid.Column="1" MinWidth="100"/>
+        <Grid HorizontalAlignment="Center" DockPanel.Dock="Top">
+            <MediaElement DockPanel.Dock="Bottom" Volume="1" Source="pack://siteoforigin:,,,/3GameView/Resources/Main/Videos/SiegVideo Bearbeitet.mp4"  VerticalAlignment="Stretch" Stretch ="Uniform"/>
+            <Border BorderThickness="3" CornerRadius="9" BorderBrush="#FF816711" Margin="-3"/>
+            <Border BorderThickness="1" CornerRadius="9" BorderBrush="#FFA17E0A" Margin="-2"/>
+        </Grid>
+        
+        
+    </DockPanel>
+</Page>

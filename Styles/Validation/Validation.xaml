@@ -1,0 +1,118 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Styles.Validation">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Styles;Component/ElementalControls/ElementalControls.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    
+    
+    <ControlTemplate x:Key="ValidationTextBoxTop" TargetType="{x:Type Control}">
+        <DockPanel LastChildFill="False">
+            <TextBlock Foreground="OrangeRed" FontSize="{Binding ElementName=adorner, Path=AdornedElement.ValidationFontSize}" DockPanel.Dock="Top" Width="{Binding ActualWidth, ElementName=adorner}" TextWrapping="WrapWithOverflow"
+                                   Text="{Binding ElementName=adorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"/>
+            <Border BorderBrush="Red" BorderThickness="4" CornerRadius="4" Name="border">
+                <AdornedElementPlaceholder Name="adorner"/>
+            </Border>
+        </DockPanel>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="ValidationNone" TargetType="{x:Type Control}">
+        <Border BorderBrush="Red" BorderThickness="4" CornerRadius="4" Name="border">
+            <AdornedElementPlaceholder Name="adorner"/>
+        </Border>
+    </ControlTemplate>
+
+    <!--<ControlTemplate x:Key="ValidationButtonNone" TargetType="{x:Type Control}">
+        <Border BorderBrush="Red" BorderThickness="4" CornerRadius="13" Name="border">
+            <AdornedElementPlaceholder Name="adorner"/>
+        </Border>
+    </ControlTemplate>-->
+
+    <Style TargetType="PasswordBox" >
+        <Style.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Validation.HasError" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="ToolTip">
+                    <Setter.Value>
+                        <ToolTip Background="Black">
+                            <TextBlock Foreground="Red" 
+                                   FontSize="25" 
+                                   Text="{Binding Path=PlacementTarget.(Validation.Errors)[0].ErrorContent, RelativeSource={RelativeSource FindAncestor, AncestorType=ToolTip}}"/>
+                        </ToolTip>
+                    </Setter.Value>
+                </Setter>
+            </MultiTrigger>            
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="local:ValidatedTextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+        <Style.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Validation.HasError" Value="True"/>
+                    <Condition Property="IsToolTipSet" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="ToolTip">
+                    <Setter.Value>
+                        <ToolTip Background="Black">
+                            <TextBlock Foreground="Red" 
+                                   FontSize="{Binding Path=PlacementTarget.ValidationFontSize, RelativeSource={RelativeSource FindAncestor, AncestorType=ToolTip}}" 
+                                   Text="{Binding Path=PlacementTarget.(Validation.Errors)[0].ErrorContent, RelativeSource={RelativeSource FindAncestor, AncestorType=ToolTip}}"/>
+                        </ToolTip>
+                    </Setter.Value>
+                </Setter>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>    
+
+    <Style TargetType="local:ValidatedComboBox">
+        <Style.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Validation.HasError" Value="True"/>
+                    <Condition Property="IsToolTipSet" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="ToolTip">
+                    <Setter.Value>
+                        <ToolTip Background="Black">
+                            <TextBlock Foreground="Red" 
+                                   FontSize="{Binding Path=PlacementTarget.ValidationFontSize, RelativeSource={RelativeSource FindAncestor, AncestorType=ToolTip}}" 
+                                   Text="{Binding Path=PlacementTarget.(Validation.Errors)[0].ErrorContent, RelativeSource={RelativeSource FindAncestor, AncestorType=ToolTip}}"/>
+                        </ToolTip>
+                    </Setter.Value>
+                </Setter>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="local:ValidatedButton" BasedOn="{StaticResource {x:Type Button}}">
+        <Style.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="HasError" Value="True"/>
+                    <Condition Property="IsToolTipSet" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="ToolTip">
+                    <Setter.Value>
+                        <ToolTip Background="Black">
+                            <TextBlock Foreground="Red" 
+                                   FontSize="{Binding Path=PlacementTarget.ValidationFontSize, RelativeSource={RelativeSource FindAncestor, AncestorType=ToolTip}}" 
+                                   Text="{Binding Path=PlacementTarget.ErrorMessage, RelativeSource={RelativeSource FindAncestor, AncestorType=ToolTip}}"/>
+                        </ToolTip>
+                    </Setter.Value>
+                </Setter>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="HasError" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="BorderBrush" Value="Red"/>
+                <Setter Property="BorderThickness" Value="4"/>
+                <Setter Property="Margin" Value="-4"/>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

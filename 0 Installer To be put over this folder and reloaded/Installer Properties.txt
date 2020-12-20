@@ -1,0 +1,11 @@
+[CommonAppDataFolder][ProductName]
+C:\ProgramData\Avocados Wars
+
+[ProgramFiles64Folder][ProductName]
+C:\Program Files\Avocados Wars
+
+[targetdir]
+""
+
+[targetdir]/
+C:\Program Files\El españolito productions\Avocados Wars89\\

@@ -1,0 +1,537 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Style TargetType="TabItem">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="pack://application:,,,/Styles;component/Images/marmol1.jpg" Stretch="Fill" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,200,200"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="FontSize" Value="34"/>
+        <Setter Property="FontFamily" Value="Old English Text MT"/>
+        <Setter Property="Margin" Value="3"/>
+        <Setter Property="Padding" Value="10,4,10,4"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TabItem">
+                    <Grid x:Name="templateRoot" SnapsToDevicePixels="True">
+                        <Border x:Name="mainBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1,1,1,0" Background="{TemplateBinding Background}" Margin="0">
+                            <Border x:Name="innerBorder" Background="Transparent" Margin="-1" Opacity="0"/>
+                        </Border>
+                        <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" ContentStringFormat="{TemplateBinding HeaderStringFormat}" ContentSource="Header" Focusable="False" HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type ItemsControl}}}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type ItemsControl}}}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true"/>
+                                <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type TabControl}}}" Value="Left"/>
+                            </MultiDataTrigger.Conditions>
+
+                            <Setter Property="BorderThickness" TargetName="innerBorder" Value="1,1,0,1"/>
+                            <Setter Property="BorderThickness" TargetName="mainBorder" Value="1,1,0,1"/>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true"/>
+                                <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type TabControl}}}" Value="Bottom"/>
+                            </MultiDataTrigger.Conditions>
+
+                            <Setter Property="BorderThickness" TargetName="innerBorder" Value="1,0,1,1"/>
+                            <Setter Property="BorderThickness" TargetName="mainBorder" Value="1,0,1,1"/>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true"/>
+                                <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type TabControl}}}" Value="Right"/>
+                            </MultiDataTrigger.Conditions>
+
+                            <Setter Property="BorderThickness" TargetName="innerBorder" Value="0,1,1,1"/>
+                            <Setter Property="BorderThickness" TargetName="mainBorder" Value="0,1,1,1"/>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true"/>
+                                <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type TabControl}}}" Value="Top"/>
+                            </MultiDataTrigger.Conditions>
+
+                            <Setter Property="BorderThickness" TargetName="innerBorder" Value="1,1,1,0"/>
+                            <Setter Property="BorderThickness" TargetName="mainBorder" Value="1,1,1,0"/>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="false"/>
+                                <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type TabControl}}}" Value="Left"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Opacity" TargetName="contentPresenter" Value="0.56"/>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="false"/>
+                                <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type TabControl}}}" Value="Bottom"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Opacity" TargetName="contentPresenter" Value="0.56"/>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="false"/>
+                                <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type TabControl}}}" Value="Right"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Opacity" TargetName="contentPresenter" Value="0.56"/>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="false"/>
+                                <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type TabControl}}}" Value="Top"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Opacity" TargetName="contentPresenter" Value="0.56"/>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="false"/>
+                                <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type TabControl}}}" Value="Left"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="BorderThickness" TargetName="innerBorder" Value="1,1,0,1"/>
+                            <Setter Property="BorderThickness" TargetName="mainBorder" Value="1,1,0,1"/>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="true"/>
+                                <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type TabControl}}}" Value="Left"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Panel.ZIndex" Value="1"/>
+                            <Setter Property="Margin" Value="-2,-2,0,-2"/>
+                            <Setter Property="Opacity" TargetName="innerBorder" Value="1"/>
+                            <Setter Property="BorderThickness" TargetName="innerBorder" Value="1,1,0,1"/>
+                            <Setter Property="BorderThickness" TargetName="mainBorder" Value="1,1,0,1"/>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="false"/>
+                                <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type TabControl}}}" Value="Bottom"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="BorderThickness" TargetName="innerBorder" Value="1,0,1,1"/>
+                            <Setter Property="BorderThickness" TargetName="mainBorder" Value="1,0,1,1"/>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="true"/>
+                                <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type TabControl}}}" Value="Bottom"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Panel.ZIndex" Value="1"/>
+                            <Setter Property="Margin" Value="-2,0,-2,-2"/>
+                            <Setter Property="Opacity" TargetName="innerBorder" Value="1"/>
+                            <Setter Property="BorderThickness" TargetName="innerBorder" Value="1,0,1,1"/>
+                            <Setter Property="BorderThickness" TargetName="mainBorder" Value="1,0,1,1"/>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="false"/>
+                                <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type TabControl}}}" Value="Right"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="BorderThickness" TargetName="innerBorder" Value="0,1,1,1"/>
+                            <Setter Property="BorderThickness" TargetName="mainBorder" Value="0,1,1,1"/>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="true"/>
+                                <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type TabControl}}}" Value="Right"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Panel.ZIndex" Value="1"/>
+                            <Setter Property="Margin" Value="0,-2,-2,-2"/>
+                            <Setter Property="Opacity" TargetName="innerBorder" Value="1"/>
+                            <Setter Property="BorderThickness" TargetName="innerBorder" Value="0,1,1,1"/>
+                            <Setter Property="BorderThickness" TargetName="mainBorder" Value="0,1,1,1"/>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="false"/>
+                                <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type TabControl}}}" Value="Top"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="BorderThickness" TargetName="innerBorder" Value="1,1,1,0"/>
+                            <Setter Property="BorderThickness" TargetName="mainBorder" Value="1,1,1,0"/>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="true"/>
+                                <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type TabControl}}}" Value="Top"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Panel.ZIndex" Value="1"/>
+                            <Setter Property="Margin" Value="-2,-2,-2,0"/>
+                            <Setter Property="Opacity" TargetName="innerBorder" Value="1"/>
+                            <Setter Property="BorderThickness" TargetName="innerBorder" Value="1,1,1,0"/>
+                            <Setter Property="BorderThickness" TargetName="mainBorder" Value="1,1,1,0"/>
+                        </MultiDataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Old English Text MT"/>
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key ="ZentraleTextBlock">
+        <Setter Property="FontFamily" Value="Old English Text MT"/>
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
+
+    <Style TargetType="TextBox">
+        <Setter Property="FontFamily" Value="Old English Text MT"/>
+    </Style>
+
+    <Style TargetType="RepeatButton">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="pack://application:,,,/Styles;component/Images/marmol1.jpg" Stretch="Fill" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,200,200"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType= "ToggleButton">
+        <Setter Property="FontSize" Value="28"/>
+        <Setter Property="FontFamily" Value="Old English Text MT"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Padding" Value="10,5,10,5"/>
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="pack://application:,,,/Styles;component/Images/marmol1.jpg" Stretch="Fill" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,200,200"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Grid>
+                        <Border CornerRadius="15" Background="{TemplateBinding Background}"/>
+                        <Rectangle Margin="15,0,15,0" Height="10" VerticalAlignment="Top">
+                            <Rectangle.Fill>
+                                <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                                    <GradientStopCollection>
+                                        <!--<GradientStop Color="{Binding Path=Scheme, RelativeSource={RelativeSource FindAncestor, AncestorType=local:CustomControl1}}" Offset="0"/>
+                                <GradientStop Color="#000000" Offset="3"/>-->
+                                        <GradientStop Offset="1.0" Color="Black"/>
+                                        <GradientStop Offset="0.0" Color="Transparent"/>
+                                    </GradientStopCollection>
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Rectangle Margin="15,0,15,0" Height="10" VerticalAlignment="Bottom">
+                            <Rectangle.Fill>
+                                <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                                    <GradientStop Offset="0.0" Color="Black"/>
+                                    <GradientStop Offset="1.0" Color="Transparent"/>
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Rectangle Width="10" Margin="0,15,0,15" HorizontalAlignment="Left">
+                            <Rectangle.Fill>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                    <GradientStop Offset="0.0" Color="Black"/>
+                                    <GradientStop Offset="1.0" Color="Transparent"/>
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Rectangle Width="10" Margin="0,15,0,15" HorizontalAlignment="Right">
+                            <Rectangle.Fill>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                    <GradientStop Offset="1.0" Color="Black"/>
+                                    <GradientStop Offset="0.0" Color="Transparent"/>
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Grid Width="15" Height="15" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Ellipse Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Ellipse.Fill>
+                                    <RadialGradientBrush>
+                                        <GradientStop Offset="1.0" Color="Black"/>
+                                        <GradientStop Offset="0.33" Color="{TemplateBinding OpacityMask}"/>
+                                    </RadialGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </Grid>
+                        <Grid Width="15" Height="15" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                            <Ellipse Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                                <Ellipse.Fill>
+                                    <RadialGradientBrush>
+                                        <GradientStop Offset="1.0" Color="Black"/>
+                                        <GradientStop Offset="0.33" Color="{TemplateBinding OpacityMask}"/>
+                                    </RadialGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </Grid>
+                        <Grid Width="15" Height="15" HorizontalAlignment="Right" VerticalAlignment="Top">
+                            <Ellipse Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                <Ellipse.Fill>
+                                    <RadialGradientBrush>
+                                        <GradientStop Offset="1.0" Color="Black"/>
+                                        <GradientStop Offset="0.33" Color="{TemplateBinding OpacityMask}"/>
+                                    </RadialGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </Grid>
+                        <Grid Width="15" Height="15" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                            <Ellipse Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                                <Ellipse.Fill>
+                                    <RadialGradientBrush>
+                                        <GradientStop Offset="1.0" Color="Black"/>
+                                        <GradientStop Offset="0.33" Color="{TemplateBinding OpacityMask}"/>
+                                    </RadialGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </Grid>
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="15"/>
+                        <Border Name="Opaci" BorderBrush="#313131" BorderThickness="1" CornerRadius="15" Background="DimGray" Opacity="0.0"/>
+
+                        <Grid Margin="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Content="{TemplateBinding Content}">
+                            </ContentPresenter>
+                        </Grid>
+
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="Opaci" Property="Opacity" Value="0.3"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="Opaci" Property="Opacity" Value="0.5"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="Opaci" Property="Opacity" Value="0.5"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="true">
+                            <Setter TargetName="Opaci" Property="Opacity" Value="0.5"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="GreenToggleButton" TargetType= "ToggleButton" BasedOn="{StaticResource {x:Type ToggleButton}}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Grid>
+                        <Border CornerRadius="15" Background="{TemplateBinding Background}"/>
+                        <Border CornerRadius="15" Background="Green" Name="GreenBackground" Visibility="Hidden"/>
+                        <Rectangle Margin="15,0,15,0" Height="10" VerticalAlignment="Top">
+                            <Rectangle.Fill>
+                                <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                                    <GradientStopCollection>
+                                        <!--<GradientStop Color="{Binding Path=Scheme, RelativeSource={RelativeSource FindAncestor, AncestorType=local:CustomControl1}}" Offset="0"/>
+                                <GradientStop Color="#000000" Offset="3"/>-->
+                                        <GradientStop Offset="1.0" Color="Black"/>
+                                        <GradientStop Offset="0.0"/>
+                                    </GradientStopCollection>
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Rectangle Margin="15,0,15,0" Height="10" VerticalAlignment="Bottom">
+                            <Rectangle.Fill>
+                                <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                                    <GradientStop Offset="0.0" Color="Black"/>
+                                    <GradientStop Offset="1.0"/>
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Rectangle Width="10" Margin="0,15,0,15" HorizontalAlignment="Left">
+                            <Rectangle.Fill>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                    <GradientStop Offset="0.0" Color="Black"/>
+                                    <GradientStop Offset="1.0"/>
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Rectangle Width="10" Margin="0,15,0,15" HorizontalAlignment="Right">
+                            <Rectangle.Fill>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                    <GradientStop Offset="1.0" Color="Black"/>
+                                    <GradientStop Offset="0.0" Color="Transparent"/>
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Grid Width="15" Height="15" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Ellipse Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Ellipse.Fill>
+                                    <RadialGradientBrush>
+                                        <GradientStop Offset="1.0" Color="Black"/>
+                                        <GradientStop Offset="0.33" Color="{TemplateBinding OpacityMask}"/>
+                                    </RadialGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </Grid>
+                        <Grid Width="15" Height="15" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                            <Ellipse Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                                <Ellipse.Fill>
+                                    <RadialGradientBrush>
+                                        <GradientStop Offset="1.0" Color="Black"/>
+                                        <GradientStop Offset="0.33" Color="{TemplateBinding OpacityMask}"/>
+                                    </RadialGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </Grid>
+                        <Grid Width="15" Height="15" HorizontalAlignment="Right" VerticalAlignment="Top">
+                            <Ellipse Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                <Ellipse.Fill>
+                                    <RadialGradientBrush>
+                                        <GradientStop Offset="1.0" Color="Black"/>
+                                        <GradientStop Offset="0.33" Color="{TemplateBinding OpacityMask}"/>
+                                    </RadialGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </Grid>
+                        <Grid Width="15" Height="15" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                            <Ellipse Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                                <Ellipse.Fill>
+                                    <RadialGradientBrush>
+                                        <GradientStop Offset="1.0" Color="Black"/>
+                                        <GradientStop Offset="0.33" Color="{TemplateBinding OpacityMask}"/>
+                                    </RadialGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </Grid>
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="15"/>
+                        <Border Name="Opaci" BorderBrush="#313131" BorderThickness="1" CornerRadius="15" Background="DimGray" Opacity="0.0"/>
+
+                        <Grid Margin="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Content="{TemplateBinding Content}">
+                            </ContentPresenter>
+                        </Grid>
+
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="Opaci" Property="Opacity" Value="0.3"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="Opaci" Property="Opacity" Value="0.5"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="true">
+                            <Setter TargetName="GreenBackground" Property="Visibility" Value="Visible"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style TargetType="Button">
+        <Setter Property="FontSize" Value="26"/>
+        <Setter Property="FontFamily" Value="Old English Text MT"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="pack://application:,,,/Styles;component/Images/marmol1.jpg" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,200,200"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="17">
+                        <Grid>
+                            <Border BorderBrush="#313131" BorderThickness="1" CornerRadius="15" Background="{TemplateBinding Background}"/>
+                            <Rectangle Margin="15,0,15,0" Height="10" VerticalAlignment="Top">
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                                        <GradientStop Offset="1.0" Color="Black"/>
+                                        <GradientStop Offset="0.0" Color="Transparent"/>
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <Rectangle Margin="15,0,15,0" Height="10" VerticalAlignment="Bottom">
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                                        <GradientStop Offset="0.0" Color="Black"/>
+                                        <GradientStop Offset="1.0" Color="Transparent"/>
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <Rectangle Width="10" Margin="0,15,0,15" HorizontalAlignment="Left">
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                        <GradientStop Offset="0.0" Color="Black"/>
+                                        <GradientStop Offset="1.0" Color="Transparent"/>
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <Rectangle Width="10" Margin="0,15,0,15" HorizontalAlignment="Right">
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                        <GradientStop Offset="1.0" Color="Black"/>
+                                        <GradientStop Offset="0.0" Color="Transparent"/>
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <Grid Width="15" Height="15" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Ellipse Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Ellipse.Fill>
+                                        <RadialGradientBrush>
+                                            <GradientStop Offset="1.0" Color="Black"/>
+                                            <GradientStop Offset="0.33" Color="Transparent"/>
+                                        </RadialGradientBrush>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                            </Grid>
+                            <Grid Width="15" Height="15" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                                <Ellipse Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                                    <Ellipse.Fill>
+                                        <RadialGradientBrush>
+                                            <GradientStop Offset="1.0" Color="Black"/>
+                                            <GradientStop Offset="0.33" Color="Transparent"/>
+                                        </RadialGradientBrush>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                            </Grid>
+                            <Grid Width="15" Height="15" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                <Ellipse Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                    <Ellipse.Fill>
+                                        <RadialGradientBrush>
+                                            <GradientStop Offset="1.0" Color="Black"/>
+                                            <GradientStop Offset="0.33" Color="Transparent"/>
+                                        </RadialGradientBrush>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                            </Grid>
+                            <Grid Width="15" Height="15" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                                <Ellipse Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                                    <Ellipse.Fill>
+                                        <RadialGradientBrush>
+                                            <GradientStop Offset="1.0" Color="Black"/>
+                                            <GradientStop Offset="0.33" Color="Transparent"/>
+                                        </RadialGradientBrush>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                            </Grid>
+                            <Border Name="Opaci" BorderBrush="#313131" BorderThickness="1" CornerRadius="15" Background="DimGray" Opacity="0.0"/>
+
+                            <Grid Margin="{TemplateBinding Padding}">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Content="{TemplateBinding Content}">
+                                </ContentPresenter>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="Opaci" Property="Opacity" Value="0.3"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="Opaci" Property="Opacity" Value="0.5"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="Opaci" Property="Opacity" Value="0.5"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+</ResourceDictionary>

@@ -1,0 +1,172 @@
+﻿<Page x:Class="FirstWindows.View.Start.OptionsPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local1="clr-namespace:FirstWindows.View.Start"
+        xmlns:local2="clr-namespace:Styles;assembly=Styles"
+        mc:Ignorable="d"
+        Title="Optionen" >    
+    <Page.Resources>        
+        <ResourceDictionary>
+            <local2:ConverterMargin x:Key="ConverterMargin"/>
+            <local1:ConverterAbilityStars x:Key="ConverterAbilityStars"/>
+            <local1:ConverterIsPlayerNotLogged x:Key="ConverterIsPlayerNotLogged"/>
+            <local1:ConverterIsPlayerLogged x:Key="ConverterIsPlayerLogged"/>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles;Component/ElementalControls/ElementalControls.xaml"/>
+                <ResourceDictionary Source="/Styles;Component/ElementalControls/Slider.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Page.Background>
+        <SolidColorBrush Opacity="0.5" Color="Black"/>
+    </Page.Background>
+    
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Canvas VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="MainCanvas" Height="500">
+                <Grid HorizontalAlignment="Stretch">
+                    <Grid.Margin>
+                        <MultiBinding Converter="{StaticResource ConverterMargin}">
+                            <Binding Path="ActualWidth" ElementName="MainCanvas"/>
+                            <Binding Path="ActualWidth" RelativeSource="{RelativeSource Mode=Self}"/>
+                        </MultiBinding>
+                    </Grid.Margin>
+                    <Grid Margin="50,0,50,0">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/Styles;component/Images/madera2.jpg" Stretch="Fill" TileMode="FlipX"  ViewportUnits="Absolute" Viewport="0,0,800,230"/>
+                        </Grid.Background>
+                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Width="530">
+                            <TabControl DockPanel.Dock="Top" Height="350" Margin="30,10,30,10" Background="Transparent">
+                                <TabItem Name="Sound" Header="Sound" >
+                                    <Grid Width="220">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <DockPanel Height="240" VerticalAlignment="Top">
+                                            <TextBlock Name="Musik" Foreground="White" FontSize="26" DockPanel.Dock="Top" Text="Musik" Margin="10"/>
+                                            <Slider Name="SliderMusik" ValueChanged="SliderMusik_ValueChanged" HorizontalAlignment="Center" Orientation="Vertical" Minimum="0" Maximum="1" Margin="10" TickFrequency="0.02"/>
+                                        </DockPanel>
+                                        <DockPanel Grid.Column="1" Height="240" VerticalAlignment="Top">
+                                            <TextBlock Name="Umgebung" Foreground="White" FontSize="26" DockPanel.Dock="Top" Text="Effekte" Margin="10"/>
+                                            <Slider Name="SliderEffekte" ValueChanged="SliderEffekte_ValueChanged" HorizontalAlignment="Center" Orientation="Vertical" Minimum="0" Maximum="1" Margin="10"/>
+                                        </DockPanel>
+                                    </Grid>
+                                </TabItem>
+                                <TabItem Name="Sprache" Header="Sprache">
+                                    <DockPanel LastChildFill="False" >
+                                        <TextBlock Name="Sprache_wählen" HorizontalAlignment="Center" Foreground="White" FontSize="26" DockPanel.Dock="Top" Text="Sprache wählen" Margin="10"/>
+                                        <ComboBox Width="220" Name="ComboboxSprache" FontSize="24" DockPanel.Dock="Top" Margin="10">
+                                            <ComboBoxItem Name="Spanisch" Content="Spanisch"/>
+                                            <ComboBoxItem Name="Deutsch" Content="Deutsch"/>
+                                            <ComboBoxItem Name="Englisch" Content="Englisch"/>
+                                        </ComboBox>
+                                    </DockPanel>
+                                </TabItem>
+                                <TabItem Name="Player" Header="Spieler">
+                                    <Grid HorizontalAlignment="Center">
+                                        <DockPanel LastChildFill="False" Margin="20" Name="LoggedOutPanel"
+                                               Visibility="{Binding LoggedPlayer, Converter={StaticResource ConverterIsPlayerNotLogged}, FallbackValue=Visible}">
+                                            <DockPanel.Triggers>
+                                                <!--<Trigger Property="modifierUnitView" Value="None">
+                                                <Setter Property="Visibility" TargetName="ModifierBorder" Value="Collapsed"/>
+                                            </Trigger>-->
+                                            </DockPanel.Triggers>
+                                            <TextBlock Name="LogOutNoti" HorizontalAlignment="Center" Foreground="White" FontSize="26" DockPanel.Dock="Top" Text="Kein Benutzer ist angemeldet" Margin="5"/>
+                                            <Button DockPanel.Dock="Top" Height="45" Name="LogIn" Click="LogIn_Click" HorizontalAlignment="Center" Margin="15" Grid.Row="3" Grid.Column="1" Content="Log in" Width="150"  Padding="3" FontSize="24"/>
+                                        </DockPanel>
+                                        <DockPanel LastChildFill="False" Name="LoggedInPanel"
+                                               Visibility="{Binding LoggedPlayer, Converter={StaticResource ConverterIsPlayerLogged}, FallbackValue=Hidden}">
+                                            <Grid DockPanel.Dock="Top">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <DockPanel VerticalAlignment="Top">
+                                                    <TextBlock Name="UserName" Foreground="LightGray" FontSize="26" DockPanel.Dock="Top" Text="Name:" Margin="0,10,0,10"/>
+                                                    <TextBlock Name="UserNameInput" Foreground="White" FontSize="26" DockPanel.Dock="Top" Text="{Binding LoggedPlayer.Player.Name}" Margin="20,00,0,00"/>
+                                                </DockPanel>
+                                                <DockPanel Grid.Column="1" Margin="0,3,0,0">
+                                                    <Button Click="LogOut_Click" DockPanel.Dock="Top" Height="45" Name="LogOut" HorizontalAlignment="Center" Margin="5,5,25,5" Grid.Row="3" Grid.Column="1" Content="Log out" Width="150"  Padding="3" FontSize="24"/>
+                                                    <Button Click="Edit_Click" Height="45" Name="Edit" HorizontalAlignment="Center" Margin="5,0,25,0" Grid.Row="3" Grid.Column="1" Content="Edit" Width="150"  Padding="3" FontSize="24"/>
+                                                </DockPanel>
+
+                                            </Grid>
+
+                                            <DockPanel DockPanel.Dock="Top">
+                                                <TextBlock Name="Ability" Foreground="LightGray" FontSize="24" Text="Fähigkeit: " Margin="0,10,0,10"/>
+                                                <Canvas Margin="20,5,0,0"  Height="40" Width="200">
+                                                    <Grid Name="StarsGrid" Height="40" Width="{Binding LoggedPlayer.Player.Ability, Converter={StaticResource ConverterAbilityStars}}">
+                                                        <Rectangle Height="40" Width="200">
+                                                            <Rectangle.Fill>
+                                                                <ImageBrush ImageSource="pack://application:,,,/FirstWindows;component/3View/Resources/Images/Controls/Sterne.png" />
+                                                            </Rectangle.Fill>
+                                                        </Rectangle>
+                                                    </Grid>
+                                                </Canvas>
+                                                <TextBlock Name="AbilityInput" Foreground="White" FontSize="20" Text="{Binding LoggedPlayer.Player.Ability, StringFormat=N2}" Margin="40,20,0,0"/>
+                                            </DockPanel>
+                                            <DockPanel DockPanel.Dock="Top">
+                                                <TextBlock Name="Battles" Foreground="LightGray" FontSize="24" Text="Schlachten: " Margin="0,10,0,10"/>
+                                                <TextBlock Name="BattlesInput" Foreground="White" FontSize="24" Text="{Binding LoggedPlayer.Player.Battles}" Margin="10"/>
+                                                <TextBlock Name="WonBattles" Foreground="LightGray" FontSize="24" Text="Gewonnene Schlachten: " Margin="10"/>
+                                                <TextBlock Name="WonBattlesInput" Foreground="White" FontSize="24" Text="{Binding LoggedPlayer.Player.WonBattles}" Margin="10"/>
+                                            </DockPanel>
+                                            <TextBlock Name="Email" Foreground="LightGray" FontSize="24" DockPanel.Dock="Top" Text="Email:" Margin="0,10,0,10"/>
+                                            <TextBlock Name="EmailInput" Foreground="White" FontSize="24" DockPanel.Dock="Top" Text="{Binding LoggedPlayer.Player.Email}" Margin="20,0,0,0" />
+
+                                        </DockPanel>
+                                    </Grid>
+
+                                </TabItem>
+                            </TabControl>
+
+                            <Button Height="55" Name="Confirm" Click="Confirm_Click" DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="10,0,15,10" Grid.Row="3" Grid.Column="1" Content="Bestätigen" Padding="20,3,20,3" FontSize="26"/>
+                            <Button Height="55" Name="Cancel" Click="Cancel_Click" DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="10,0,15,10" Grid.Row="3" Grid.Column="1" Content="Abbrechen" Padding="20,3,20,3" FontSize="26"/>
+                        </DockPanel>
+                    </Grid>
+
+                    <DockPanel HorizontalAlignment="Right" Width="58" LastChildFill="False">
+                        <DockPanel.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/FirstWindows;component/3View/Resources/Images/Window/ColumnsRepeat.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,58,69" Stretch="Uniform"/>
+                        </DockPanel.Background>
+                        <Rectangle DockPanel.Dock="Bottom" Width="58" Height="25">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="pack://application:,,,/FirstWindows;component/3View/Resources/Images/Window/ColumnBottom.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Rectangle DockPanel.Dock="Top" Width="58" Height="25">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="pack://application:,,,/FirstWindows;component/3View/Resources/Images/Window/ColumnTop.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </DockPanel>
+                    <DockPanel HorizontalAlignment="Left" Width="58" LastChildFill="False">
+                        <DockPanel.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/FirstWindows;component/3View/Resources/Images/Window/ColumnsRepeat.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,58,69" Stretch="Uniform"/>
+                        </DockPanel.Background>
+                        <Rectangle DockPanel.Dock="Bottom" Width="58" Height="25">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="pack://application:,,,/FirstWindows;component/3View/Resources/Images/Window/ColumnBottom.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Rectangle DockPanel.Dock="Top" Width="58" Height="25">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="pack://application:,,,/FirstWindows;component/3View/Resources/Images/Window/ColumnTop.png"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </DockPanel>
+
+                </Grid>
+            </Canvas>
+        </Grid>
+        <Frame Name="OptionenFrame" NavigationUIVisibility="Hidden" />
+    </Grid>
+    
+</Page>

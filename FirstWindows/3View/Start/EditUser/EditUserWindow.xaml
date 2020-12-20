@@ -1,0 +1,132 @@
+﻿<Page x:Class="FirstWindows.View.Start.EditUserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"   
+        xmlns:validation="clr-namespace:Styles.Validation;assembly=Styles"
+        xmlns:local1="clr-namespace:FirstWindows.View.Start"
+        xmlns:local2="clr-namespace:Styles;assembly=Styles"
+        mc:Ignorable="d"
+        Title="Optionen"  >
+    <Page.Resources>
+        <ResourceDictionary>
+            <local2:ConverterMargin x:Key="ConverterMargin"/>
+            <local1:EditUserModel x:Key="EditUserModel"/>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles;Component/Validation/Validation.xaml"/>
+            </ResourceDictionary.MergedDictionaries>            
+        </ResourceDictionary>
+    </Page.Resources>
+    <Page.Background>
+        <SolidColorBrush Opacity="0.5" Color="Black"/>
+    </Page.Background>
+    <Grid DataContext="{StaticResource EditUserModel}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Canvas VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="MainCanvas" Height="500">
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.Margin>
+                    <MultiBinding Converter="{StaticResource ConverterMargin}">
+                        <Binding Path="ActualWidth" ElementName="MainCanvas"/>
+                        <Binding Path="ActualWidth" RelativeSource="{RelativeSource Mode=Self}"/>
+                    </MultiBinding>
+                </Grid.Margin>
+                <Grid Margin="50,0,50,0">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="pack://application:,,,/Styles;component/Images/madera2.jpg" Stretch="Fill" TileMode="FlipX"  ViewportUnits="Absolute" Viewport="0,0,800,230"/>
+                    </Grid.Background>
+                    <DockPanel LastChildFill="False" Margin="30, 20 ,30 ,20">
+                        <TextBlock Name="UserName" Foreground="LightGray" FontSize="24" DockPanel.Dock="Top" Text="Name:" Margin="0,10,0,10"/>
+                        <TextBox Width="330" HorizontalAlignment="Left" Name="UserNameInput" FontSize="24" DockPanel.Dock="Top" Text="{Binding Name, Mode=TwoWay}" Margin="20,0,0,00"/>
+
+                        <TextBlock Name="Email" Foreground="White" FontSize="24" DockPanel.Dock="Top" Text="Email:" Margin="0,10,0,10"/>
+                        <Grid DockPanel.Dock="Top" Margin="20,0,0,0"></Grid>
+                        <validation:ValidatedTextBox IsToolTipSet="True" LostFocus="UpdateSourceTextBox" Validation.ErrorTemplate="{StaticResource ValidationNone}"
+                                                     x:Name="EmailInput" FontSize="24" DockPanel.Dock="Top"  Margin="20,0,0,0" >
+                            <Binding Path="Email" Mode="TwoWay">
+                                <Binding.ValidationRules>
+                                    <local1:EmailValidationRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </validation:ValidatedTextBox>
+                        <TextBlock Name="OldPass" Foreground="White" FontSize="24" DockPanel.Dock="Top" Text="Altes Passwort:" Margin="0,30,0,10"/>
+                        <PasswordBox DockPanel.Dock="Top" LostFocus="UpdateSourcePasswordBox" Margin="20,0,0,0" Name="OldPassInput" 
+                                     FontSize="23" Validation.ErrorTemplate="{StaticResource ValidationNone}">
+                            <PasswordBox.Tag>
+                                <Binding Path="PropertyForPasswordBinding" Mode="OneWayToSource" UpdateSourceTrigger="Explicit">
+                                    <Binding.ValidationRules>
+                                        <local1:OldPasswordValidationRule/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </PasswordBox.Tag>
+                        </PasswordBox>
+                        <TextBlock DockPanel.Dock="Top" Name="NewPass" Foreground="White" FontSize="24" Text="Neues Passwort:" Margin="0,30,0,5"/>
+                        <PasswordBox DockPanel.Dock="Top" LostFocus="UpdateSourcePasswordBox" Margin="20,0,0,0" 
+                                     Name="NewPassInput1" FontSize="23"
+                                         Validation.ErrorTemplate="{StaticResource ValidationNone}">
+                            <PasswordBox.Tag>
+                                <Binding Path="PropertyForPasswordBinding" Mode="OneWayToSource" UpdateSourceTrigger="Explicit">
+                                    <Binding.ValidationRules>
+                                        <local1:FirstNewPasswordValidationRule/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </PasswordBox.Tag>
+                        </PasswordBox>
+                        <TextBlock DockPanel.Dock="Top"  Name="NewPass2" Foreground="White" FontSize="24" Text="Wiederholtes neues Passwort:" Margin="0,5,0,5"/>
+                        <PasswordBox DockPanel.Dock="Top" Margin="20,0,0,10" LostFocus="UpdateSourcePasswordBox" 
+                                     Name="NewPassInput2"  Grid.Column="1" Grid.Row="1" FontSize="23" 
+                                     Validation.ErrorTemplate="{StaticResource ValidationNone}">
+                            <PasswordBox.Tag>
+                                <Binding Path="PropertyForPasswordBinding" Mode="OneWayToSource" UpdateSourceTrigger="Explicit">
+                                    <Binding.ValidationRules>
+                                        <local1:SecondNewPasswordValidationRule/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </PasswordBox.Tag>
+                        </PasswordBox>
+
+                        <DockPanel Grid.Column="1" Margin="0,10,0,0" DockPanel.Dock="Right">
+                            <Button Height="45" Name="Cancel" Click="Cancel_Click" HorizontalAlignment="Right" Margin="5,5,25,5" Grid.Row="3" Grid.Column="1" Content="Abbrechen" Padding="20,3,20,3" FontSize="24"/>
+                            <Button Height="45" Name="Confirm" HorizontalAlignment="Right" Margin="5,0,25,0" Grid.Row="3" Grid.Column="1" Content="Bestätigen" Padding="20,3,20,3" FontSize="24"/>
+                        </DockPanel>
+
+                    </DockPanel>
+                </Grid>                
+
+                <DockPanel HorizontalAlignment="Right" Width="58" LastChildFill="False">
+                    <DockPanel.Background>
+                        <ImageBrush ImageSource="pack://application:,,,/FirstWindows;component/3View/Resources/Images/Window/ColumnsRepeat.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,58,69" Stretch="Uniform"/>
+                    </DockPanel.Background>
+                    <Rectangle DockPanel.Dock="Bottom" Width="58" Height="25">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="pack://application:,,,/FirstWindows;component/3View/Resources/Images/Window/ColumnBottom.png"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle DockPanel.Dock="Top" Width="58" Height="25">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="pack://application:,,,/FirstWindows;component/3View/Resources/Images/Window/ColumnTop.png"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </DockPanel>
+                <DockPanel HorizontalAlignment="Left" Width="58" LastChildFill="False">
+                    <DockPanel.Background>
+                        <ImageBrush ImageSource="pack://application:,,,/FirstWindows;component/3View/Resources/Images/Window/ColumnsRepeat.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,58,69" Stretch="Uniform"/>
+                    </DockPanel.Background>
+                    <Rectangle DockPanel.Dock="Bottom" Width="58" Height="25">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="pack://application:,,,/FirstWindows;component/3View/Resources/Images/Window/ColumnBottom.png"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle DockPanel.Dock="Top" Width="58" Height="25">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="pack://application:,,,/FirstWindows;component/3View/Resources/Images/Window/ColumnTop.png"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </DockPanel>
+
+            </Grid>
+        </Canvas>
+    </Grid>
+</Page>

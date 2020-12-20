@@ -1,0 +1,12 @@
+﻿<Page x:Class="FirstWindows.View.InitialDialog.VideoPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FirstWindows.View.InitialDialog"
+        mc:Ignorable="d"
+        Title="VideoWindow">
+    <Grid>
+        <MediaElement Name="Video" DockPanel.Dock="Bottom" Volume="1" Source="pack://siteoforigin:,,,/3View/Resources/Videos/IntroFilm.mp4"  VerticalAlignment="Stretch" Stretch ="Uniform"/>
+    </Grid>
+</Page>

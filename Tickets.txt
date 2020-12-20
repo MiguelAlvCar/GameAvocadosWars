@@ -1,0 +1,40 @@
+-Debug combat.
+
+
+Listener bind to right transmiter (with a shared random string)
+
+
+
+
+
+
+
+NewTurn
+	When Adversary is Online and when he is offline
+
+
+Save OnlineGame in Database when game closed (automatic, show notification in StartPage)
+In SaveLoad connection to DataBase to Load the online games.
+
+Email notification when turn finished and opponent offline
+
+
+
+
+
+
+
+Anmeldung des Spiels
+
+
+tecla para ocultar unidades
+barra para la carga de partidas
+marco superior para los datos de la partida
+
+Benützeroberfläche:
+
+Szenarien
+Spiele mit Flagge (bis Ende und jede Runde Punkte gebend), Begrenzung der Runden
+Netzspiel zeitgleich
+Netzspiel zeitunterschiedlich
+Spiele mit dem Computer

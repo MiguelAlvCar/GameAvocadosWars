@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="BasicElements.ElefantAttackStorage">
+    <Position X="1" Y="2" Width="3" />
+    <AssociationLine Name="ParticularEleAttack" Type="BasicElements.ParticularEleAttack" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4" Y="2.438" />
+        <Point X="5.625" Y="2.438" />
+        <Point X="5.625" Y="2.296" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="ElefantAttackUnit" Type="BasicElements.ElefantAttackUnit" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4" Y="2.875" />
+        <Point X="4.375" Y="2.875" />
+        <Point X="4.375" Y="3.812" />
+        <Point X="5.25" Y="3.812" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAAAAAIEEAAAAAAAAAA=</HashCode>
+      <FileName>ElefantAttackStorage.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ParticularEleAttack" />
+      <Property Name="ElefantAttackUnit" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BasicElements.ElefantAttackUnit">
+    <Position X="5.25" Y="3.25" Width="2" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAgAAAgAABYAA=</HashCode>
+      <FileName>ElefantAttackStorage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BasicElements.ParticularEleAttack">
+    <Position X="4.5" Y="1" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAA=</HashCode>
+      <FileName>ElefantAttackStorage.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="State" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BasicElements.State">
+    <Position X="7.5" Y="0.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAYAA=</HashCode>
+      <FileName>ElefantAttackStorage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

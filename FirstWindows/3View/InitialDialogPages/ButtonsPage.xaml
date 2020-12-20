@@ -1,0 +1,49 @@
+﻿<Page x:Class="FirstWindows.View.InitialDialog.ButtonsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FirstWindows.View.InitialDialog" 
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ButtonsPage">
+    <Page.Resources>
+        <ResourceDictionary>
+            <Style x:Key="ButtonBorder" TargetType="{x:Type Border}">
+                <Setter Property="Background" Value="#FFAF6300"/>
+                <Setter Property="CornerRadius" Value="16"/>
+                <Setter Property="Margin" Value="8"/>
+                <Setter Property="Padding" Value="1"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="BorderBrush" Value="#FFD47800"/>
+            </Style>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles;Component/ElementalControls/ElementalControls.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="65">
+            <DockPanel LastChildFill="False" Name="PanelMainButtonsBottom" >
+                <Border Style="{StaticResource ButtonBorder}" DockPanel.Dock="Left">
+                    <Button Click="HotSeatClick" Height="55" Width="190" Name="HotSeat" Content="Hot seat"/>
+                </Border>
+                <Border Style="{StaticResource ButtonBorder}" DockPanel.Dock="Left">
+                    <Button Click="OnlineClick" Height="55" Width="190" Name="Online" Content="Online game"/>
+                </Border>
+                <Border Style="{StaticResource ButtonBorder}" DockPanel.Dock="Left">
+                    <Button Click="LoadClick" Height="55" Width="190" Name="Load"  Content="Load Game"/>
+                </Border>
+                <Border Style="{StaticResource ButtonBorder}" DockPanel.Dock="Left">
+                    <Button Click="OptionsClick" Height="55" Width="190" Name="Options" Content="Player"/>
+                </Border>
+                <Border Style="{StaticResource ButtonBorder}" DockPanel.Dock="Left">
+                    <Button Click="QuitClick" Height="55" Width="190" Name="Quit" Content="Quit Game" />
+                </Border>
+            </DockPanel>
+        </Grid>
+        <Frame Name="ButtonsFrame" NavigationUIVisibility="Hidden"/>
+    </Grid>
+    
+</Page>

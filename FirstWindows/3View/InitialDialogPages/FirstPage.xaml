@@ -1,0 +1,30 @@
+﻿<Page x:Class="FirstWindows.View.InitialDialog.FirstPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FirstWindows.View.InitialDialog"
+        mc:Ignorable="d"
+        Title="FirstWindow" MinWidth="900" MinHeight="600">    
+    
+    <Grid>
+        <Grid>
+        </Grid>
+        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+                <Image Margin="20" Stretch="Uniform" Source="pack://application:,,,/3View/Resources/Main/Images/Window/AvocadosWars.png"/>
+            </Grid>
+        </Grid>
+        
+        <Frame Name="FirstFrame" NavigationUIVisibility="Hidden" Source="ButtonsPage.xaml"/>
+    </Grid>
+</Page>

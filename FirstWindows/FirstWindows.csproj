@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B3B73AA1-B964-4B93-800F-8E13326C735B}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <RootNamespace>FirstWindows</RootNamespace>
+    <AssemblyName>FirstWindows</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.1\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="1ViewModel\Windows\MainModelView.cs" />
+    <Compile Include="1ViewModel\Windows\OnlineHall\OHall_InternetInterpreter.cs" />
+    <Compile Include="1ViewModel\Windows\OnlineHall\OnlineHallModel.cs" />
+    <Compile Include="3View\GetCommonElements.cs" />
+    <Compile Include="3View\InitialDialogPages\ButtonsPage.xaml.cs">
+      <DependentUpon>ButtonsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="3View\InitialDialogPages\FirstPage.xaml.cs">
+      <DependentUpon>FirstPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="3View\InitialDialogPages\SpracheWählenWindow.xaml.cs">
+      <DependentUpon>SpracheWählenWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="3View\InitialDialogPages\VideoPage.xaml.cs">
+      <DependentUpon>VideoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="3View\OnlineHall\AbilityConverter.cs" />
+    <Compile Include="3View\OnlineHall\Guest.xaml.cs">
+      <DependentUpon>Guest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="3View\OnlineHall\Host.xaml.cs">
+      <DependentUpon>Host.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="3View\OnlineHall\OnlineHall.xaml.cs">
+      <DependentUpon>OnlineHall.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="3View\OnlineHall\UserLogin.xaml.cs">
+      <DependentUpon>UserLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="3View\OnlineHall\UserLoginValidationRules.cs" />
+    <Compile Include="3View\OpenDatenDat.cs" />
+    <Compile Include="3View\Start\ConverterPlayerOptionen.cs" />
+    <Compile Include="3View\Start\EditUser\EditUserModel.cs" />
+    <Compile Include="3View\Start\EditUser\EditUserValidationRules.cs" />
+    <Compile Include="3View\Start\EditUser\EditUserWindow.xaml.cs">
+      <DependentUpon>EditUserWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="3View\Start\OptionsPage.xaml.cs">
+      <DependentUpon>OptionsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="3View\Start\StartPage.xaml.cs">
+      <DependentUpon>StartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="3View\TranslationDataBase.cs" />
+    <Compile Include="Interceptors\SaveLoadInterceptor.cs" />
+    <Compile Include="Interceptors\ViewGameInterceptor.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="StartLogic.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ArmyAndUnitTypes\ArmyAndUnitTypes.csproj">
+      <Project>{c36c1767-107d-4fc3-a8d3-9827b02ec068}</Project>
+      <Name>ArmyAndUnitTypes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BaseUnit\BasicElements.csproj">
+      <Project>{3ca50315-9bcc-49bb-8fee-19c0c356a337}</Project>
+      <Name>BasicElements</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTO_Models\DTO_Models.csproj">
+      <Project>{07d3288c-b789-4eed-bf17-31ced0d318a7}</Project>
+      <Name>DTO_Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HotSeatViewModel\HotSeatViewModel.csproj">
+      <Project>{9eb5311c-97da-4a8f-8ba2-ee1033d2744f}</Project>
+      <Name>HotSeatViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnlineGameChatAndStore\OnlineGameChatAndStore.csproj">
+      <Project>{053206f7-fdba-4305-80d8-59c2a61430d5}</Project>
+      <Name>OnlineGameChatAndStore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnlineGameViewModel\OnlineGameViewModel.csproj">
+      <Project>{5255719a-30cd-4896-9b11-c3f25af3248c}</Project>
+      <Name>OnlineGameViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sound\Sound.csproj">
+      <Project>{bd3840b1-b321-411b-81a9-5d823331d8be}</Project>
+      <Name>Sound</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Styles\Styles.csproj">
+      <Project>{c96b70fe-7d30-4068-9356-9e26542bf3a6}</Project>
+      <Name>Styles</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WpfBasicElements\WpfBasicElements.csproj">
+      <Project>{ccb7a613-e834-4141-9215-ebd5bab833c2}</Project>
+      <Name>WpfBasicElements</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WpfTranslation\Translation.csproj">
+      <Project>{8e597a34-5370-4721-a2ba-b9adab73a15a}</Project>
+      <Name>Translation</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="3View\InitialDialogPages\ButtonsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="3View\InitialDialogPages\FirstPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="3View\InitialDialogPages\SpracheWählenWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="3View\InitialDialogPages\VideoPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="3View\OnlineHall\Guest.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="3View\OnlineHall\Host.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="3View\OnlineHall\OnlineHall.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="3View\OnlineHall\UserLogin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="3View\Start\EditUser\EditUserWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="3View\Start\OptionsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="3View\Start\StartPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="3View\Resources\Images\Window\AvocadosWars.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="3View\Resources\Images\Window\ColumnBottom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="3View\Resources\Images\Window\ColumnsRepeat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="3View\Resources\Images\Window\ColumnTop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="3View\Resources\Images\Window\WoodDecoFrame.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="3View\Resources\Images\Window\WoodDecoFrameHor.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="3View\Resources\Images\Wallpaper\Hoplits.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="3View\Resources\Images\Wallpaper\Kreuzritter.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="3View\Resources\Images\Wallpaper\Vikings.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="3View\Resources\Images\Controls\Sterne.png" />
+    <Content Include="3View\Resources\Music\06 Le quattro stagioni %28The Four Sea.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Music\08 Symphony No. 94 In G Major, Hob.I.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Music\13 Symphony No. 45 In F-Sharp Minor.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Music\2-05 Requiem Mass In D Minor, K. 626.m4a">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Music\34 Concerto Grosso In B-Flat Major,.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Music\40 Concerto in A-Flat Major for Two.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Music\61 Concerto Grosso In B Minor, Op. 6.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Music\98 Cello Concerto No. 1 In C Major %28.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Videos\IntroFilm.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

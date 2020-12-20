@@ -1,0 +1,28 @@
+﻿<Page x:Class="Styles.CommonPages.WPopup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Styles.CommonPages"
+        mc:Ignorable="d"
+        Title="WPopup">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles;Component/ElementalControls/ElementalControls.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Page.Background>
+        <SolidColorBrush Opacity="0.5" Color="Black"/>
+    </Page.Background>
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"  Width="600">
+            <StackPanel.Background>
+                <ImageBrush ImageSource="pack://application:,,,/Styles;component/Images/madera2.jpg" Stretch="Fill" TileMode="FlipX"  ViewportUnits="Absolute" Viewport="0,0,800,230"/>
+            </StackPanel.Background>
+            <TextBlock Name="Textbox1" Foreground="White" TextWrapping="WrapWithOverflow" Margin="30" FontSize="26" Grid.Column="1" MinWidth="100"/>
+            <Button HorizontalAlignment="Center" Padding="30,8,30,8" Name="Ok_ok" Margin="30,0,30,30" Grid.Row="3" Grid.Column="1" Content="Ok, ok..." Click="Schliessen" />
+        </StackPanel>
+    </Grid>
+</Page>

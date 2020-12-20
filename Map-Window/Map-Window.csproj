@@ -1,0 +1,419 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8322AC5A-3318-468A-BCE3-984B0CAE0981}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Map_Window</RootNamespace>
+    <AssemblyName>Map-Window</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\schild_3B6_icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="3View\App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="1ViewModel\Units, Map\UnitView.cs" />
+    <Compile Include="1ViewModel\Windows\MainWindowModelView.cs" />
+    <Compile Include="2Controller\Main\MainWindowController.cs" />
+    <Compile Include="2Controller\RelayCommand.cs" />
+    <Compile Include="1ViewModel\ModelBase.cs" />
+    <Compile Include="1ViewModel\Units, Map\List Units.cs" />
+    <Compile Include="3View\Resources\Main\Images\Controls\Kontrolle.cs" />
+    <Compile Include="3View\Main\Converters.cs" />
+    <Compile Include="1ViewModel\Units, Map\TerrainView.cs" />
+    <Compile Include="1ViewModel\Units, Map\Constructors.cs" />
+    <Compile Include="3View\Other Windows for Main\PopupYesNo.xaml.cs">
+      <DependentUpon>PopupYesNo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="1ViewModel\Reader\DateiReader.cs" />
+    <Compile Include="3View\Start\Speichern.xaml.cs">
+      <DependentUpon>Speichern.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="3View\StartLogik.xaml.cs">
+      <DependentUpon>StartLogik.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="3View\Übersetzung.cs" />
+    <Compile Include="1ViewModel\Units, Map\Units.cs" />
+    <Compile Include="3View\Other Windows for Main\Neuer_Spieler.xaml.cs">
+      <DependentUpon>Neuer_Spieler.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="3View\Start\Optionen.xaml.cs">
+      <DependentUpon>Optionen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="3View\Other Windows for Main\WPopup.xaml.cs">
+      <DependentUpon>WPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="3View\Other Windows for Main\BlauRundewechsel.xaml.cs">
+      <DependentUpon>BlauRundewechsel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="3View\Other Windows for Main\RotRundewechsel.xaml.cs">
+      <DependentUpon>RotRundewechsel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="3View\Other Windows for Main\SiegFenster.xaml.cs">
+      <DependentUpon>SiegFenster.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="3View\Initial Dialog Windows\SpracheWählen.xaml.cs">
+      <DependentUpon>SpracheWählen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="3View\Start\StartW.xaml.cs">
+      <DependentUpon>StartW.xaml</DependentUpon>
+    </Compile>
+    <Page Include="3View\Resources\Styles\TerrainStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="3View\Other Windows for Main\PopupYesNo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="3View\Resources\Styles\Controls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="3View\Resources\Styles\Unit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="3View\Start\Speichern.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="3View\StartLogik.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="3View\Main\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="3View\App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="3View\Main\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="3View\Other Windows for Main\Neuer_Spieler.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="3View\Start\Optionen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="3View\Other Windows for Main\WPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="3View\Other Windows for Main\BlauRundewechsel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="3View\Other Windows for Main\RotRundewechsel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="3View\Other Windows for Main\SiegFenster.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="3View\Initial Dialog Windows\SpracheWählen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="3View\Start\StartW.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Resources\Manual.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="3View\Resources\Main\Images\Window\madera2.jpg" />
+    <Resource Include="3View\Resources\Main\Images\Window\marmol1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="3View\Resources\Main\Images\Terrains\Sechseck.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="3View\Resources\Main\Images\Terrains\Huegel.jpg" />
+    <Resource Include="3View\Resources\Main\Images\Terrains\Wald.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="3View\Resources\Main\Images\Armies\Red\SwordmanRed.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="3View\Resources\Main\Images\Armies\Blue\SwordmanBlue.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="3View\Resources\Main\Images\Armies\Blue\ArcherBlue.jpg" />
+    <Resource Include="3View\Resources\Main\Images\Armies\Red\ArcherRed.jpg" />
+    <Resource Include="3View\Resources\Main\Images\Armies\Blue\RiderBlue.jpg" />
+    <Resource Include="3View\Resources\Main\Images\Armies\Red\RiderRed.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="3View\Resources\Main\Images\Modifiers\Flight.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\schild_3B6_icon.ico" />
+    <Resource Include="3View\Resources\Main\Images\schild_3B6_icon.ico" />
+    <Resource Include="3View\Resources\Main\Images\Controls\Delete1.png" />
+    <Resource Include="3View\Resources\Main\Images\Armies\Blue\DevoteeBlue.jpg" />
+    <Resource Include="3View\Resources\Main\Images\Armies\Red\DevoteeRed.jpg" />
+    <Resource Include="3View\Resources\Main\Images\Armies\Blue\CompanionBlue.jpg" />
+    <Resource Include="3View\Resources\Main\Images\Armies\Red\CompanionRed.jpg" />
+    <Resource Include="3View\Resources\Main\Images\Armies\Blue\BersekerBlue.jpg" />
+    <Resource Include="3View\Resources\Main\Images\Armies\Red\BersekerRed.jpg" />
+    <Resource Include="3View\Resources\Main\Images\Armies\Blue\ElephantBlue.jpg" />
+    <Resource Include="3View\Resources\Main\Images\Armies\Red\ElephantRed.jpg" />
+    <Resource Include="3View\Resources\Main\Images\Terrains\HuegelWald.jpg" />
+    <Resource Include="3View\Resources\Main\Images\Armies\Blue\LInfantryHBlue.jpg" />
+    <Resource Include="3View\Resources\Main\Images\Armies\Red\LInfantryHRed.jpg" />
+    <Resource Include="3View\Resources\Main\Images\Armies\Blue\LInfantryVBlue.jpg" />
+    <Resource Include="3View\Resources\Main\Images\Armies\Red\LInfantryVRed.jpg" />
+    <Resource Include="3View\Resources\Main\Images\Armies\Blue\KnightBlue.jpg" />
+    <Resource Include="3View\Resources\Main\Images\Armies\Red\KnightRed.jpg" />
+    <Resource Include="3View\Resources\Main\Images\Armies\Blue\HInfantryBlue.jpg" />
+    <Content Include="3View\Resources\Main\Images\Armies\Red\HInfantryRed.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="3View\Resources\Main\Images\Armies\Blue\HopliteBlue.jpg" />
+    <Resource Include="3View\Resources\Main\Images\Armies\Red\HopliteRed.jpg" />
+    <Resource Include="3View\Resources\Main\Images\Modifiers\Fright.jpg" />
+    <Resource Include="3View\Resources\Main\Images\Wallpaper\Hoplits.jpg" />
+    <Resource Include="3View\Resources\Main\Images\Wallpaper\Kreuzritter.jpg" />
+    <Resource Include="3View\Resources\Main\Images\Modifiers\Charge.jpg" />
+    <Resource Include="3View\Resources\Main\Images\Controls\StrukturSkaliert.png" />
+    <Resource Include="3View\Resources\Main\Images\Controls\UhrSkaliert.png" />
+    <Resource Include="3View\Resources\Main\Images\Controls\UhrSkaliertWeiss.png" />
+    <Resource Include="3View\Resources\Main\Images\Controls\Aexte.png" />
+    <Resource Include="3View\Resources\Main\Images\Controls\AexteGold.png" />
+    <Content Include="3View\Resources\Main\Images\Window\SiegVideo Bearbeitet.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="3View\Resources\Main\Images\Modifiers\Rage.jpg" />
+    <Resource Include="3View\Resources\Main\Images\Wallpaper\Vikings.jpg" />
+    <Resource Include="3View\Resources\Main\Images\Modifiers\Formation.jpg" />
+    <Content Include="3View\Resources\Main\Effects\Berseker.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Effects\Elephant1.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Effects\Elephant2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Effects\Elephant3.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Effects\Elephant4.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Effects\Horror1.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Effects\Horror2.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Effects\Horror3.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Effects\Pfeil1.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Effects\Pfeil2.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Effects\Pfeil3.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Effects\Pferd1.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Effects\Pferd2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Effects\Pferd3.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Effects\Schrei1.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Effects\Schrei2.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Effects\Schrei3.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Effects\Schwert1.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Effects\Schwert2.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Effects\Schwert3.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Effects\Schwert4.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Effects\Verteidigung1.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Effects\Verteidigung2.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Effects\Verteidigung3.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Music\06 Le quattro stagioni %28The Four Sea.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Music\08 Symphony No. 94 In G Major, Hob.I.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Music\13 Symphony No. 45 In F-Sharp Minor.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Music\2-05 Requiem Mass In D Minor, K. 626.m4a">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Music\34 Concerto Grosso In B-Flat Major,.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Music\40 Concerto in A-Flat Major for Two.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Music\61 Concerto Grosso In B Minor, Op. 6.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="3View\Resources\Main\Music\98 Cello Concerto No. 1 In C Major %28.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 und x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model Spiel\Model Game.csproj">
+      <Project>{46244ba6-2431-4cd9-9f94-53456e642bf5}</Project>
+      <Name>Model Game</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

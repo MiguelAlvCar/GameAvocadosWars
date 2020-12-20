@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="InternetCommunication.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="WebSite" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://avocadoswars.azurewebsites.net/</Value>
+    </Setting>
+    <Setting Name="WebSiteTest" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost:63503/</Value>
+    </Setting>
+    <Setting Name="Test" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="WebSiteFake" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://192.168.178.20/Website</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

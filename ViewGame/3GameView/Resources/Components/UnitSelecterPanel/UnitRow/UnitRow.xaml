@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="ViewGame.View.Resources.UnitRow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ViewGame.View.Resources"
+             mc:Ignorable="d" 
+             Name="unitRow">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <local:UnitNameConverter x:Key="UnitNameConverter"/>
+            <local:PointsConverter x:Key="PointsConverter"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="0" Name="UnitName" FontSize="24" Text="{Binding ElementName=unitRow, Path=UnitType, Converter={StaticResource UnitNameConverter}}"/>
+        <Grid Grid.Column="1" Margin="0,2,0,2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="19"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBox FontSize="25" Grid.RowSpan="2" MinWidth="45" Margin="0,0,2,0" Text="{Binding ElementName=unitRow, Path=Counter}"/>
+            <RepeatButton Click="MoreUnits_Click" Grid.Column="1">
+                <Polygon Points="3,0 6,6 0,6 3,0" Fill="Black"/>
+            </RepeatButton>
+            <RepeatButton Click="LessUnits_Click" Grid.Column="1" Grid.Row="1">
+                <Polygon Points="3,6 6,0 0,0 3,6" Fill="Black"/>
+            </RepeatButton>
+        </Grid>
+        <TextBlock Name="Points" Grid.Column="2" FontSize="24" >
+            <TextBlock.Text>
+                <MultiBinding Converter="{StaticResource PointsConverter}">
+                    <Binding ElementName="unitRow" Path="UnitType"/>
+                    <Binding ElementName="unitRow" Path="Counter"/>
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+    </Grid>
+</UserControl>

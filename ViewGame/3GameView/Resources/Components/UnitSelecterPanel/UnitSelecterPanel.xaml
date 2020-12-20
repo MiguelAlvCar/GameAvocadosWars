@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="ViewGame.View.Resources.UnitSelecterPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ViewGame.View.Resources"
+             mc:Ignorable="d" Name="unitSelecter">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <local:RestPointsConverter x:Key="RestPointsConverter"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <DockPanel>
+        <StackPanel>
+            <TextBlock FontSize="28" Name="RestPointsText" Text="Rest Points"/>
+            <TextBlock FontSize="28" Name="RestPointsNumber" Text="{Binding ElementName=unitSelecter, Path=Points, Converter={StaticResource RestPointsConverter}}"/>
+        </StackPanel>
+        <Border Background="#FFdb9200" BorderThickness="1" Width="3" Margin="6" CornerRadius="1" BorderBrush="#FFF7BF00"/>
+
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled"  VerticalScrollBarVisibility="Auto">
+            <StackPanel Name="UnitRowPanel" MinWidth="80"/>
+        </ScrollViewer>
+        <Button Click="CreateUnits_Click" Padding="4" VerticalAlignment="Center">
+            <TextBlock Name="CreateUnitsButton" FontSize="28" Text="E. schaffen" TextWrapping="Wrap" TextAlignment="Center"/>
+        </Button>
+
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled"  VerticalScrollBarVisibility="Auto" MinHeight="121" MinWidth="400">
+            <Canvas Name="Camp" Background="White">
+                <!--<Canvas.LayoutTransform>
+                    <ScaleTransform x:Name="st"/>
+                </Canvas.LayoutTransform>-->
+            </Canvas>
+        </ScrollViewer>
+    </DockPanel>
+</UserControl>

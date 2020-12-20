@@ -1,0 +1,24 @@
+﻿<Page x:Class="ViewGame.View.OtherWindowsMain.BlueTurnChange"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ViewGame"
+        mc:Ignorable="d"
+        Title="Rundewechsel">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles;Component/ElementalControls/ElementalControls.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid Background="Blue">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Name="Runde_für" Foreground="White" VerticalAlignment="Center" TextAlignment="Center" Text="Runde für den blauen Spieler" FontSize="40" Margin="0,120,0,0"/>
+        <Button Name="Spielen" Grid.Row="1" Click="close" Content="Spielen" FontSize="40" Width="250" Height="110" Margin="0,0,0,120"/>
+    </Grid>
+</Page>

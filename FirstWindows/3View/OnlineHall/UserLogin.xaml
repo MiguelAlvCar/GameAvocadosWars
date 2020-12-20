@@ -1,0 +1,131 @@
+﻿<Page x:Class="FirstWindows.View.OnlineHall.UserLogin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FirstWindows.View.OnlineHall"
+        xmlns:local1="clr-namespace:Styles;assembly=Styles"        
+        xmlns:local3="clr-namespace:Styles.Validation;assembly=Styles"
+        mc:Ignorable="d"
+        Title="OnlineHall">
+    <Page.Background>
+        <SolidColorBrush Opacity="0.5" Color="Black"/>
+    </Page.Background>
+    <Page.Resources>
+        <ResourceDictionary>
+            <local1:ConverterMargin x:Key="ConverterMargin"/>
+            <local:UserLoginModel x:Key="UserLoginModel"/>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles;Component/Validation/Validation.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid DataContext="{StaticResource UserLoginModel}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Canvas VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="MainCanvas" Height="500">
+
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.Margin>
+                    <MultiBinding Converter="{StaticResource ConverterMargin}">
+                        <Binding Path="ActualWidth" ElementName="MainCanvas"/>
+                        <Binding Path="ActualWidth" RelativeSource="{RelativeSource Mode=Self}"/>
+                    </MultiBinding>
+                </Grid.Margin>
+                <Grid Margin="50,0,50,0">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="pack://application:,,,/Styles;component/Images/madera2.jpg" Stretch="Fill" TileMode="FlipX"  ViewportUnits="Absolute" Viewport="0,0,800,230"/>
+                    </Grid.Background>
+                    <Grid Margin="10,0,10,0">
+                        <Grid.CommandBindings>
+                            <CommandBinding Command="local:UserLogin.Confirm_Click" CanExecute="Confirm_ClickCanExecute" Executed="Confirm_ClickExecuted"/>
+                        </Grid.CommandBindings>
+                        <Grid.InputBindings>
+                            <KeyBinding Key="Enter" Command="local:UserLogin.Confirm_Click"/>
+                        </Grid.InputBindings>
+                        <Grid.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="TextAlignment" Value="Center"/>
+                                <Setter Property="FontSize" Value="26"/>
+                                <Setter Property="FontFamily" Value="Old English Text MT"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Style>
+                        </Grid.Resources>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition Height="70"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Name="Login" Text="User Login" Grid.ColumnSpan="2" FontSize="29" Margin="10"/>
+                        <TextBlock Name="Validation1" Text="Ihr Name oder Ihre Passwort sind nicht richtig" Grid.Row="1" Grid.ColumnSpan="2" FontSize="18" Foreground="Red" TextWrapping="Wrap" HorizontalAlignment="Right" Width="380" Visibility="Collapsed"/>
+                        <TextBlock Name="PlayerName" Text="Name" Grid.Row="2"/>
+                        <TextBlock Name="Password" Text="Kennwort" Grid.Row="3"/>
+                        <local3:ValidatedTextBox x:Name="NameInput" FontSize="26" FontFamily="Old English Text MT" Margin="5"  
+                                                 IsToolTipSet="True" Grid.Column="1" 
+                                                 Validation.ErrorTemplate="{StaticResource ValidationNone}" MinWidth="100" Grid.Row="2">
+                            <Binding Path="Name" Mode="OneWayToSource" UpdateSourceTrigger="Explicit">
+                                <Binding.ValidationRules>
+                                    <local:NameValidationRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </local3:ValidatedTextBox>
+                        <PasswordBox Name="PasswordInput" Margin="5" Grid.Column="1" Grid.Row="3" FontSize="23" 
+                                     Validation.ErrorTemplate="{StaticResource ValidationNone}">
+                            <PasswordBox.Tag>
+                                <Binding Path="PropertyForPasswordBinding" Mode="OneWayToSource" UpdateSourceTrigger="Explicit">
+                                    <Binding.ValidationRules>
+                                        <local:PasswordValidationRule/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </PasswordBox.Tag>
+                        </PasswordBox>
+                        <Button Name="Cancel" Margin="30,10,30,10" Padding="10,0,10,0" Grid.Row="4" Content="Abbrechen" Click="Cancel_Click"/>
+                        <Button Name="Confirm" Margin="30,10,30,10" Padding="10,0,10,0" Grid.Row="4" Grid.Column="1" Content="Bestätigen" Command="local:UserLogin.Confirm_Click"/>
+                    </Grid>                    
+                </Grid>
+
+
+                <DockPanel HorizontalAlignment="Right" Width="58" LastChildFill="False">
+                    <DockPanel.Background>
+                        <ImageBrush ImageSource="pack://application:,,,/FirstWindows;component/3View/Resources/Images/Window/ColumnsRepeat.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,58,69" Stretch="Uniform"/>
+                    </DockPanel.Background>
+                    <Rectangle DockPanel.Dock="Bottom" Width="58" Height="25">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="pack://application:,,,/FirstWindows;component/3View/Resources/Images/Window/ColumnBottom.png"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle DockPanel.Dock="Top" Width="58" Height="25">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="pack://application:,,,/FirstWindows;component/3View/Resources/Images/Window/ColumnTop.png"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </DockPanel>
+                <DockPanel HorizontalAlignment="Left" Width="58" LastChildFill="False">
+                    <DockPanel.Background>
+                        <ImageBrush ImageSource="pack://application:,,,/FirstWindows;component/3View/Resources/Images/Window/ColumnsRepeat.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,58,69" Stretch="Uniform"/>
+                    </DockPanel.Background>
+                    <Rectangle DockPanel.Dock="Bottom" Width="58" Height="25">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="pack://application:,,,/FirstWindows;component/3View/Resources/Images/Window/ColumnBottom.png"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle DockPanel.Dock="Top" Width="58" Height="25">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="pack://application:,,,/FirstWindows;component/3View/Resources/Images/Window/ColumnTop.png"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </DockPanel>
+
+            </Grid>
+        </Canvas>
+    </Grid>
+</Page>
+
